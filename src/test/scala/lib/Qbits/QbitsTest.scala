@@ -9,4 +9,15 @@ class QbitsTest extends FunSuite {
     assert(Qbits.tensor(DenseVector(1.0, 2.0, 0.5), DenseVector(1.0, 0.5)) == DenseVector(1.0, 0.5, 2.0, 1.0, 0.5, 0.25))
   }
 
+  test("make qbits from list") {
+    assert(new Qbits(Array(1,0,0,1).toList).q == DenseVector(
+      0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0
+    ))
+  }
+
+  test("bin to dec") {
+    assert(Qbits.binToDec(List(1,0,1,0)) == 10)
+  }
+
+
 }
