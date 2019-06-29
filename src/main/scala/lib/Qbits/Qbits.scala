@@ -12,9 +12,12 @@ case class Qbits(q: DenseVector[QNum], size: Int) {
   }
 
   def this(list: List[Int]) {
-    this(list.map(e => if(e == 0) Qbits.zero else  Qbits.one).foldRight(DenseVector(1.0))(Qbits.tensor), list.length)
+    this(list.map(e => if(e == 0) Qbits.zero else Qbits.one).foldRight(DenseVector(1.0))(Qbits.tensor), list.length)
   }
 
+  def this(bits: Int*) {
+    this(bits.toList)
+  }
 }
 object Qbits {
   def zero = DenseVector(1.0, 0.0)

@@ -3,8 +3,9 @@ import breeze.linalg.CSCMatrix
 import breeze.numerics.sqrt
 import lib.Prefs._
 
-class HadamardGate(val index:Int) extends CircuitGate(HadamardGate.getGate) {
-  override def expand: Int => AnyGate = normalExpand(1,index)
+class HadamardGate(index: Int) extends OneQbitGate(index) {
+
+  override def getBasicGate: AnyGate = AnyGate(HadamardGate.getGate)
 }
 
 object HadamardGate {

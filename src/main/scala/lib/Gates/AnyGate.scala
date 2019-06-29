@@ -10,8 +10,6 @@ case class AnyGate(gate: CSCMatrix[QNum]) {
   def x(g: AnyGate): AnyGate = AnyGate(tensor(gate, g.gate))
 
   def *(q: Qbits): Qbits = Qbits(gate * q.q, q.size)
-
-  def expand(b: Int, a: Int): AnyGate = AnyGate(tensor(IdGate.getGate(b), tensor(gate, IdGate.getGate(a))))
 }
 
 object AnyGate {

@@ -1,10 +1,10 @@
 package lib.circuit
 
+import lib.Gates.CircuitGate
+import lib.Qbits.Qbits
 
-class Circuit(numOfQbits:Int) {
-  val gates: List[ColumnOfGates] = List()
 
+class Circuit(val gates: List[CircuitGate], val qbits: Qbits) {
+  def calculate: Qbits = gates.foldLeft(qbits)((q,g) =>  g * q)
 }
-
-class ColumnOfGates
 

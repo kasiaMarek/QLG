@@ -10,7 +10,7 @@ class QbitsTest extends FunSuite {
   }
 
   test("make qbits from list") {
-    assert(new Qbits(Array(1,0,0,1).toList).q == DenseVector(
+    assert(new Qbits(1,0,0,1).q == DenseVector(
       0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0
     ))
   }
