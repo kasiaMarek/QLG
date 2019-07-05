@@ -5,7 +5,6 @@ import breeze.numerics.pow
 import lib.Qbits.Qbits
 
 class NotGate(index:Int) extends OneQbitGate(index) {
-
   override def *(q: Qbits): Qbits = {
     val arr = q.q.toArray
     val d = pow(2, q.size - index - 1)
