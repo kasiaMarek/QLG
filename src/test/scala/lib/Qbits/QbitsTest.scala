@@ -19,5 +19,9 @@ class QbitsTest extends FunSuite {
     assert(Qbits.binToDec(List(1,0,1,0)) == 10)
   }
 
+  test("dec to bin") {
+    assert(Qbits.decToBin(10) == List(1,0,1,0))
+  }
+
 
 }

@@ -4,7 +4,7 @@ import lib.Gates.CircuitGate
 import lib.Qbits.Qbits
 
 
-class Circuit(val gates: List[CircuitGate], val qbits: Qbits) {
-  def calculate: Qbits = gates.foldLeft(qbits)((q,g) =>  g * q)
+class Circuit(val gates: List[CircuitGate]) {
+  def calculate(qbits: Qbits): Qbits = gates.foldLeft(qbits)((q,g) =>  g * q)
 }
 
