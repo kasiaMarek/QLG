@@ -1,8 +1,7 @@
 package lib.SemiClassicLogic
 
-import lib.Gates.CircuitGate
-import lib.Qbits.Qbits
-import lib.circuit.Circuit
+import lib.quantum.gates.CircuitGate
+import lib.quantum.circuit.Circuit
 
 import scala.collection.mutable
 
@@ -14,13 +13,7 @@ class SemiClassicCircuit(val numOfInputs: Int, val gates: List[SemiClassicGate])
     this(numOfInputs, gates.toList)
   }
 
-  //TODO::change and maybe put this into Circuit class
-  def getQbits(bits:List[Int]) : Qbits = {
-    assert(bits.length == numOfInputs)
-    new Qbits(bits ::: List.fill(gates.length)(0))
-  }
-
-  def getQuantumCircuit(): Circuit = new Circuit(gates.flatMap(convertToQuantumAndChangeState))
+  def getQuantumCircuit(): Circuit = new Circuit(gates.flatMap(convertToQuantumAndChangeState), numOfInputs + gates.size)
 
   def convertToQuantumAndChangeState(gate: SemiClassicGate):  List[CircuitGate] = {
     val out = convertToQuantum(gate)

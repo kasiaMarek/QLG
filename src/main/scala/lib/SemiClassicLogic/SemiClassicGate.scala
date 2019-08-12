@@ -1,6 +1,6 @@
 package lib.SemiClassicLogic
 
-import lib.Gates.{CNotGate, CircuitGate, NotGate}
+import lib.quantum.gates.{CNotGate, CircuitGate, NotGate}
 
 sealed abstract class SemiClassicGate(val numOfInputs: Int, val outputIndex: Int)
 
