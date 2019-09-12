@@ -4,9 +4,9 @@ import dsl.gateBuilders.AnyGateBuilder
 import dsl.gates.DSLAnyGate
 import dsl.gates.dslquantum.ToffoliQ
 
-class ToffoliQBuilder extends AnyGateBuilder(None, "TLF"){
+class ToffoliQBuilder extends ControlGateQBuilder(Some(1), None, "TLF"){
   override def getGate: DSLAnyGate = {
     beforeGetGate
-    new ToffoliQ(args.tail, args.head)
+    new ToffoliQ(controls, args.head)
   }
 }

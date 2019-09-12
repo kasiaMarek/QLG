@@ -1,23 +1,30 @@
 package dsl.gateBuilders
 
-import dsl.exceptions.{NotEnoughArgumentsException, TooManyArgumentsException}
+import dsl.exceptions.{NotEnoughArgumentsException, TooManyArgumentsException, VariableNotDefinedException}
 import dsl.gates.DSLAnyGate
 
 abstract class AnyGateBuilder(val numOfArgs: Option[Int], val gateName: String) {
   var args: List[String] = List()
 
   def consume(arg: String, declaredArgs: Set[String]): Unit = {
-    if(numOfArgs.isDefined && args.size >= numOfArgs.get) {
-      throw new TooManyArgumentsException(gateName, numOfArgs.get)
-    }
     if(AnyGateBuilder.checkArgument(arg, declaredArgs)) {
       args :+= arg
+    } else {
+      throw  new VariableNotDefinedException(arg)
     }
   }
 
   def beforeGetGate: Unit = {
-    if(numOfArgs.isDefined && args.size < numOfArgs.get) {
-      throw new NotEnoughArgumentsException(gateName, numOfArgs.get)
+    checkArgNum(args.size, numOfArgs)
+  }
+
+  def checkArgNum(actual: Int, expected: Option[Int]): Unit = {
+    if(expected.isDefined && actual < expected.get) {
+      throw new NotEnoughArgumentsException(gateName, expected.get)
+    } else {
+      if(expected.isDefined && actual > expected.get) {
+        throw new TooManyArgumentsException(gateName, expected.get)
+      }
     }
   }
 

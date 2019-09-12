@@ -16,7 +16,9 @@ class OrCls(args: (DSLVariable, DSLVariable), out: DSLVariable) extends DSLAnyGa
       List(new NotGate(argsIndices._1)),
       List(new NotGate(argsIndices._2)),
       new AndCls(args, out).toQuantumGate(map),
-      List(new NotGate(outIndex))
+      List(new NotGate(outIndex)),
+      List(new NotGate(argsIndices._1)),
+      List(new NotGate(argsIndices._2))
     ).flatten
   }
 }
