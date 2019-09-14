@@ -1,20 +1,19 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/QLG
     docker:
       - image: circleci/openjdk:8-jdk
-        working_directory: ~/QLG
-        steps:
-          - checkout
-          - restore_cache:
-          keys:
-           - v1-dependencies-{{ checksum "build.sbt" }}
+    steps:
+      - checkout
+      - restore_cache:
+      key: v1-dependencies-{{ checksum "build.sbt" }}
 
-           - run: cat /dev/null | sbt test:compile
+       - run: cat /dev/null | sbt test:compile
 
-           - save_cache:
-               paths:
-                 - ~/.m2
-               key: v1-dependencies--{{ checksum "build.sbt" }}
+       - save_cache:
+           paths:
+             - ~/.m2
+           key: v1-dependencies--{{ checksum "build.sbt" }}
 
-           - run: cat /dev/null | sbt test:test
+       - run: cat /dev/null | sbt test:test
