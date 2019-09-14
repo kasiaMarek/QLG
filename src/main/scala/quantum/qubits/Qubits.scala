@@ -4,7 +4,6 @@ import breeze.linalg.DenseVector
 import breeze.numerics.log
 import org.apache.commons.math3.distribution.EnumeratedDistribution
 import quantum.QNum
-import prefs.Prefs._
 
 case class Qubits(q: DenseVector[QNum], size: Int) {
 
@@ -30,15 +29,17 @@ case class Qubits(q: DenseVector[QNum], size: Int) {
   }
 
   def measureAllReturnAsInt(): Int = {
-    val mapping = new java.util.ArrayList[org.apache.commons.math3.util.Pair[Int,java.lang.Double]]()
-    for (e <- q.data.zipWithIndex.map(p => new org.apache.commons.math3.util.Pair(p._2, new java.lang.Double(p._1.toDouble())))) {
-      mapping.add(e)
-    }
-   new EnumeratedDistribution[Int](mapping).sample()
+    import org.apache.commons.math3.util.Pair
+    import java.util.ArrayList
+    import java.lang.Double
+
+    val mapping = new ArrayList[Pair[Int, Double]]()
+    q.data.zipWithIndex.map(p => new Pair(p._2, new Double((p._1 * p._1).toDouble()))).foreach(mapping.add)
+    new EnumeratedDistribution[Int](mapping).sample()
   }
 
   def getProbabilitiesForAQubit(index: Int): (Double, Double) = {
-    val sumOfSquares : Array[QNum] => Double  = (array: Array[QNum]) => array.foldRight(0.0)((e, acc) => acc + (e*e).toDouble())
+    val sumOfSquares : Array[QNum] => Double  = (array: Array[QNum]) => array.foldRight(0.0)((e, acc) => acc + (e * e).toDouble())
 
     q.data.sliding(1 << (size - index - 1))
       .zipWithIndex
@@ -48,6 +49,22 @@ case class Qubits(q: DenseVector[QNum], size: Int) {
         else
           (p._1, p._2 + sumOfSquares(arr._1)))
   }
+
+  def getProbabilitiesOf1ForAll(): List[Double] = {
+    val probabilities = new Array[Double](size)
+    val qbitsWithIndex = q.data.zipWithIndex
+
+    for((e,i) <- qbitsWithIndex; p <- 0 until size) {
+      if(checkIf1ForIndex(i,p)) {
+        probabilities.update(p, probabilities(p) + (e * e).toDouble())
+      }
+    }
+
+    probabilities.toList.reverse
+  }
+
+  def checkIf1ForIndex(index: Int, qubit: Int): Boolean = (index >> qubit) % 2 == 1
+
 }
 
 object Qubits {

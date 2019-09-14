@@ -11,8 +11,8 @@ object IdGate {
     (QNum.zero, QNum.one)
   )
 
-  def getGate(t:Int) = {
-    val n = pow(2,t)
+  def getGate(size: Int) = {
+    val n = pow(2, size)
     val builder = new CSCMatrix.Builder[QNum](rows = n, cols = n)
     for (i <- 0 until n) {
       builder.add(i, i, QNum.one)

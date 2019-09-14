@@ -1,7 +1,7 @@
 package quantum.gates
 
 import breeze.linalg.CSCMatrix
-import quantum.{QNum, QNumSemiring}
+import quantum.QNum
 import prefs.Prefs._
 
 abstract class ControlGate extends CircuitGate {

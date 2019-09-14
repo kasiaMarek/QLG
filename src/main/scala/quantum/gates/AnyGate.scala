@@ -1,7 +1,7 @@
 package quantum.gates
 
 import breeze.linalg.CSCMatrix
-import quantum.{QNum, QNumSemiring}
+import quantum.QNum
 import quantum.qubits.Qubits
 import prefs.Prefs._
 

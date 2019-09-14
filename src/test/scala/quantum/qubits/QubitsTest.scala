@@ -1,7 +1,6 @@
 package quantum.qubits
 
 import breeze.linalg.DenseVector
-import breeze.numerics.sqrt
 import org.scalatest.FunSuite
 import quantum.QNum
 
@@ -26,14 +25,23 @@ class QubitsTest extends FunSuite {
 //  }
 
   test("measure probability") {
-    //TODO:: eq for double
-//    assert(
-//      new Qubits(
-//        new DenseVector(
-//          Array(0.5, 1/sqrt(2), 0, 0.5)
-//        ), 2
-//      ).getProbabilitiesForAQubit(1) == (0.25, 0.75)
-//    )
+    assert(
+      new Qubits(
+        new DenseVector(
+          Array(QNum(rationalPart = 0.5), QNum(sqrtPart = 1), QNum(), QNum(rationalPart = 0.5))
+        ), 2
+      ).getProbabilitiesForAQubit(1) == (0.25, 0.75)
+    )
+  }
+
+  test("measure probability for all") {
+    assert(
+      new Qubits(
+        new DenseVector(
+          Array(QNum(rationalPart = 0.5), QNum(sqrtPart = 1), QNum(), QNum(rationalPart = 0.5))
+        ), 2
+      ).getProbabilitiesOf1ForAll() == List(0.25, 0.75)
+    )
   }
 
 
