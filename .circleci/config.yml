@@ -6,9 +6,7 @@ jobs:
 
     working_directory: ~/QLG
 
-    environment:
-    #  JVM_OPTS: -Xmx3200m
-    #  TERM: dumb
+#    environment:
 
     steps:
       - checkout
