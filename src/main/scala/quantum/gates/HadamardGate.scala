@@ -1,7 +1,7 @@
 package quantum.gates
 import breeze.linalg.CSCMatrix
-import breeze.numerics.sqrt
-import prefs.Prefs.QNum
+import quantum.QNum
+import prefs.Prefs._
 
 class HadamardGate(index: Int) extends OneQubitGate(index, HADAMARD) {
 
@@ -9,9 +9,8 @@ class HadamardGate(index: Int) extends OneQubitGate(index, HADAMARD) {
 }
 
 object HadamardGate {
-  //TODO: fix Hadamard gate
   def getGate : CSCMatrix[QNum] = CSCMatrix(
-    (1.0, 1.0),
-    (1.0, -1.0)
-  ) *:* 1.0/sqrt(2.0)
+    (QNum.`1/sqrt2`, QNum.`1/sqrt2`),
+    (QNum.`1/sqrt2`, QNum.`1/sqrt2` * QNum.`-one`)
+  )
 }

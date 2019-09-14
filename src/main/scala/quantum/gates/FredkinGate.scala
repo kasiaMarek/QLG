@@ -1,7 +1,7 @@
 package quantum.gates
 
 import breeze.linalg.CSCMatrix
-import prefs.Prefs.QNum
+import quantum.QNum
 
 class FredkinGate(val control: Int, val swap:(Int,Int)) extends ControlGate() {
   assert(control != swap._1 && control != swap._2 && swap._1 != swap._2)

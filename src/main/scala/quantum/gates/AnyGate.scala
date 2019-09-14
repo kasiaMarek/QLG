@@ -1,15 +1,16 @@
 package quantum.gates
 
 import breeze.linalg.CSCMatrix
-import prefs.Prefs.QNum
+import quantum.{QNum, QNumSemiring}
 import quantum.qubits.Qubits
+import prefs.Prefs._
 
 case class AnyGate(gate: CSCMatrix[QNum]) {
   import AnyGate._
 
   def x(g: AnyGate): AnyGate = AnyGate(tensor(gate, g.gate))
 
-  def *(q: Qubits): Qubits = Qubits(gate * q.q, q.size)
+  def *(q: Qubits): Qubits = Qubits((gate * q.q).toDenseVector, q.size)
 }
 
 object AnyGate {

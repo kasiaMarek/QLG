@@ -2,6 +2,7 @@ package quantum.gates
 
 import breeze.linalg.{CSCMatrix, DenseVector}
 import breeze.numerics.pow
+import quantum.QNum
 import quantum.qubits.Qubits
 
 class NotGate(index:Int) extends OneQubitGate(index, NOT) {
@@ -17,7 +18,7 @@ class NotGate(index:Int) extends OneQubitGate(index, NOT) {
 
 object NotGate {
   def getGate = CSCMatrix(
-    (0.0, 1.0),
-    (1.0, 0.0)
+    (QNum.zero, QNum.one),
+    (QNum.one, QNum.zero)
   )
 }

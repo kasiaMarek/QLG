@@ -1,7 +1,7 @@
 package quantum.gates
 
 import breeze.linalg.CSCMatrix
-import prefs.Prefs.QNum
+import quantum.QNum
 
 class ToffoliGate(control: List[Int], index: Int) extends ControlGate {
 

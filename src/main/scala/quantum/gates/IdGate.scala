@@ -2,19 +2,20 @@ package quantum.gates
 
 import breeze.linalg.CSCMatrix
 import breeze.numerics.pow
-import prefs.Prefs.QNum
+import quantum.QNum
+import prefs.Prefs._
 
 object IdGate {
   def getGate = CSCMatrix(
-    (1.0, 0.0),
-    (0.0, 1.0)
+    (QNum.one, QNum.zero),
+    (QNum.zero, QNum.one)
   )
 
   def getGate(t:Int) = {
     val n = pow(2,t)
     val builder = new CSCMatrix.Builder[QNum](rows = n, cols = n)
     for (i <- 0 until n) {
-      builder.add(i, i, 1.0)
+      builder.add(i, i, QNum.one)
     }
     builder.result
   }

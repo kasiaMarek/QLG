@@ -1,7 +1,8 @@
 package quantum.gates
 
 import breeze.linalg.CSCMatrix
-import prefs.Prefs.QNum
+import quantum.{QNum, QNumSemiring}
+import prefs.Prefs._
 
 abstract class ControlGate extends CircuitGate {
 
@@ -26,7 +27,7 @@ abstract class ControlGate extends CircuitGate {
     )
 
     for(i <- 0 until (1 << size) if check(i)) {
-      builder.add(i, i, 1.0)
+      builder.add(i, i, QNum.one)
     }
 
     builder.result
@@ -42,8 +43,8 @@ abstract class ControlGate extends CircuitGate {
     if(sortedIndices.isEmpty) {
       for (n <- ranges.head) {
         val (s1, s2) = genPair(acc | n << prev + 1)
-        builder.add(s1, s2, 1.0)
-        builder.add(s2, s1, 1.0)
+        builder.add(s1, s2, QNum.one)
+        builder.add(s2, s1, QNum.one)
       }
     } else {
       for (n <- ranges.head) {
