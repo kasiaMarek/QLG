@@ -1,0 +1,14 @@
+a = 1;
+b = 0;
+d = 0;
+hdm(b);
+c = and(a, or(a, d));
+e = 0;
+tfl(:b, e, :a);
+f = and(a, d);
+g = or(f, e);
+hdm(g);
+h = 0;
+frd(:a, :c, h, :g, d);
+j = and(a, or(a, or(c, not(h))));
+k = 1;
