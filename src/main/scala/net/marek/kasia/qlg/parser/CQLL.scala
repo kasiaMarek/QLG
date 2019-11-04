@@ -6,8 +6,8 @@ class CQLL extends RegexParsers {
   def program: Parser[List[Expression]] = rep1(expression)
 
   def expression: Parser[Expression] = (
-    opt("res ")~variable~"="~va ^^
-    { case s~v~"="~va => Attribution(v, va, s.isDefined) }
+    variable~"="~va ^^
+    { case v~"="~va => Attribution(v, va) }
   | qGate
   )
 

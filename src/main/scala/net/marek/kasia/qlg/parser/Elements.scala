@@ -2,7 +2,7 @@ package net.marek.kasia.qlg.parser
 
 sealed abstract class Expression //
 
-case class Attribution(v: Variable, va: Va, isResult: Boolean) extends Expression //
+case class Attribution(v: Variable, va: Va) extends Expression //
 
 //net.marek.kasia.qlg.quantum gates
 sealed abstract class QGate extends Expression

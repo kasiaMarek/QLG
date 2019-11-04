@@ -3,7 +3,7 @@ package net.marek.kasia.qlg.quantum.gates
 import breeze.linalg.CSCMatrix
 import net.marek.kasia.qlg.quantum.QNum
 
-class ToffoliGate(control: List[Int], index: Int) extends ControlGate {
+class ToffoliGate(val control: List[Int], val index: Int) extends ControlGate {
 
   def this(singleControl: Int, index: Int) {
     this(List(singleControl), index)

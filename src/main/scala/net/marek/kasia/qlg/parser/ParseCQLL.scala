@@ -12,14 +12,14 @@ object ParseCQLL {
 
   def parse(state: ParseState, e: Expression): ParseState = {
     e match {
-      case Attribution(v, va, isResult) => {
+      case Attribution(v, va) => {
         if(state.varInfo.exists(_.name == v.name)) {
           throw new ArgumentAlreadyDefinedException(v.name)
         } else {
           va match {
-            case One() => state ++ VarInfo(v.name, 1, isResult)
-            case Zero() => state ++ VarInfo(v.name, 0, isResult)
-            case clsGate: ClsGate => parse(state, clsGate, v.name) ++ VarInfo(v.name, 0, isResult)
+            case One() => state ++ VarInfo(v.name, 1)
+            case Zero() => state ++ VarInfo(v.name, 0)
+            case clsGate: ClsGate => parse(state, clsGate, v.name) ++ VarInfo(v.name, 0)
           }
         }
       }
@@ -56,15 +56,15 @@ object ParseCQLL {
       case v: Variable => (state, parseVar(state, v))
       case One() => {
         val tmp = state.getTmp
-        (state.nextTmp() ++ VarInfo(tmp, 1, false), tmp)
+        (state.nextTmp() ++ VarInfo(tmp, 1), tmp)
       }
       case Zero() => {
         val tmp = state.getTmp
-        (state.nextTmp() ++ VarInfo(tmp, 0, false), tmp)
+        (state.nextTmp() ++ VarInfo(tmp, 0), tmp)
       }
       case cls: ClsGate => {
         val tmp = state.getTmp
-        (parse(state.nextTmp(), cls, tmp) ++ VarInfo(tmp, 0, false), tmp)
+        (parse(state.nextTmp(), cls, tmp) ++ VarInfo(tmp, 0), tmp)
       }
     }
   }
@@ -88,7 +88,7 @@ object ParseCQLL {
 
 }
 
-case class VarInfo(name: String, init: Int, isRes: Boolean)
+case class VarInfo(name: String, init: Int)
 
 class ParseState(val varInfo: List[VarInfo], val gates: List[DSLAnyGate], val tmp: Int) {
   def ++(gate: DSLAnyGate): ParseState = new ParseState(varInfo, gates :+ gate, tmp)
