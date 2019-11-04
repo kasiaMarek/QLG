@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  sonar-scanner: nodis-com-br/sonar-scanner@0.1.0
 jobs:
   build:
     docker:
