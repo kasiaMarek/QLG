@@ -1,0 +1,6 @@
+a = 1
+hdm(a)
+b = 1
+c = and(a,b)
+d = cpy(c)
+tfl(:a, :b, c)
