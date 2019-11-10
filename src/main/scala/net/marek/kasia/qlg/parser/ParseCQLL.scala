@@ -1,5 +1,6 @@
 package net.marek.kasia.qlg.parser
 
+import net.marek.kasia.qlg.exorcism.circuitToESOP.ShannonExpansion
 import net.marek.kasia.qlg.parser.exceptions.{ArgumentAlreadyDefinedException, VariableNotDefinedException}
 import net.marek.kasia.qlg.quantum.CircuitExecutor
 import net.marek.kasia.qlg.quantum.circuit.Circuit
@@ -16,10 +17,15 @@ object ParseCQLL {
         if(state.varInfo.exists(_.name == v.name)) {
           throw new ArgumentAlreadyDefinedException(v.name)
         } else {
-          va match {
+          val optimilizedVa = va match {
+            case clsGate: BoolFunction => ShannonExpansion.makeSimple(clsGate)
+            case e => e
+          }
+          optimilizedVa match {
             case One() => state ++ VarInfo(v.name, 1)
             case Zero() => state ++ VarInfo(v.name, 0)
-            case clsGate: ClsGate => parse(state, clsGate, v.name) ++ VarInfo(v.name, 0)
+            case v1: Variable => state ++ new CopyCls(parseVar(state, v1), v.name) ++ VarInfo(v.name, 0)
+            case clsGate: BoolFunction => parse(state, clsGate, v.name) ++ VarInfo(v.name, 0)
           }
         }
       }
@@ -27,9 +33,8 @@ object ParseCQLL {
     }
   }
 
-  def parse(state: ParseState, e: ClsGate, to:String): ParseState = {
+  def parse(state: ParseState, e: BoolFunction, to:String): ParseState = {
     e match {
-      case Copy(v) => state ++ new CopyCls(parseVar(state, v), to)
       case Not(v) => {
         val (ps, n) = parse(state, v)
         ps ++ new NotCls(n, to)
@@ -62,7 +67,7 @@ object ParseCQLL {
         val tmp = state.getTmp
         (state.nextTmp() ++ VarInfo(tmp, 0), tmp)
       }
-      case cls: ClsGate => {
+      case cls: BoolFunction => {
         val tmp = state.getTmp
         (parse(state.nextTmp(), cls, tmp) ++ VarInfo(tmp, 0), tmp)
       }

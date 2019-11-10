@@ -6,27 +6,27 @@ class CQLL extends RegexParsers {
   def program: Parser[List[Expression]] = rep1(expression)
 
   def expression: Parser[Expression] = (
-    variable~"="~va ^^
+    variable~"="~v ^^
     { case v~"="~va => Attribution(v, va) }
   | qGate
   )
 
-  def v: Parser[V] = va | variable
-
-  def va: Parser[Va] = (
+  def v: Parser[V] = (
     "1" ^^ (_ => One())
   | "0" ^^ (_ => Zero())
   | clsGate
+  | variable
   )
 
-  def clsGate: Parser[ClsGate] = (
+  def clsGate: Parser[BoolFunction] = (
     "and("~v~","~v~")" ^^
     { case "and("~v1~","~v2~")" => And(List(v1, v2)) }
   | "or("~v~","~v~")" ^^
     {case "or("~v1~","~v2~")" => Or(List(v1, v2))}
   | "not("~>v<~")" ^^ Not
-  | "cpy("~>variable<~")" ^^ Copy
-  )
+//  | "xor("~v~","~v~")" ^^
+//    { case "xor("~v1~","~v2~")" => Xor(List(v1, v2)) }
+    )
 
   def qGate: Parser[QGate] = (
     "hdm("~>variable<~")" ^^ Hdm
