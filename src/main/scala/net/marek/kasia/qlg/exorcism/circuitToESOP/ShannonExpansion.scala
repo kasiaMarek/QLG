@@ -5,7 +5,7 @@ import net.marek.kasia.qlg.parser._
 object ShannonExpansion {
 
   def shannonExpansion(function: V): ShannonRoot =
-    new ShannonRoot(expand(function, 0, collectVariables(function)))
+    new ShannonRoot(expand(makeSimple(function), 0, collectVariables(function)))
 
   private def expand(function: V, index: Int, variables: List[Variable]): ShannonExpansionTE =
     function match {
@@ -14,8 +14,8 @@ object ShannonExpansion {
         val variable = variables(index)
         new ShannonNode(
           variable,
-          expand(makeSimple(function, v => if(v == variable) Zero() else One()), index+1, variables),
-          expand(makeSimple(function, v => if(v == variable) One() else Zero()), index+1, variables)
+          expand(makeSimple(function, v => if(v == variable) Zero() else v), index+1, variables),
+          expand(makeSimple(function, v => if(v == variable) One() else v), index+1, variables)
         )
       }
     }

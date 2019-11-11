@@ -1,5 +1,6 @@
 package net.marek.kasia.qlg.parser
 
+import net.marek.kasia.qlg.exorcism.FunctionOptimization
 import net.marek.kasia.qlg.exorcism.circuitToESOP.ShannonExpansion
 import net.marek.kasia.qlg.parser.exceptions.{ArgumentAlreadyDefinedException, VariableNotDefinedException}
 import net.marek.kasia.qlg.quantum.CircuitExecutor
@@ -17,15 +18,11 @@ object ParseCQLL {
         if(state.varInfo.exists(_.name == v.name)) {
           throw new ArgumentAlreadyDefinedException(v.name)
         } else {
-          val optimilizedVa = va match {
-            case clsGate: BoolFunction => ShannonExpansion.makeSimple(clsGate)
-            case e => e
-          }
-          optimilizedVa match {
+          va match {
             case One() => state ++ VarInfo(v.name, 1)
             case Zero() => state ++ VarInfo(v.name, 0)
             case v1: Variable => state ++ new CopyCls(parseVar(state, v1), v.name) ++ VarInfo(v.name, 0)
-            case clsGate: BoolFunction => parse(state, clsGate, v.name) ++ VarInfo(v.name, 0)
+            case clsGate: BoolFunction => FunctionOptimization.toQuantumGates(clsGate, v).foldLeft(state ++ VarInfo(v.name, 0))((s, g) => parse(s,g))
           }
         }
       }
