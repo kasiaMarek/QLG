@@ -14,17 +14,4 @@ class FredkinGateTest extends FunSuite {
     assert(new FredkinGate(List(2, 1, 4),(0,3)) * new Qubits(0,1,1,1,1) == new Qubits(1,1,1,0,1))
   }
 
-//  test("get simple gate") {
-//    assert(new FredkinGate(0, (1,2)).getExpandedGate(3) == AnyGate(CSCMatrix(
-//      (QNum.one, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero),
-//      (QNum.zero, QNum.one, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero),
-//      (QNum.zero, QNum.zero, QNum.one, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero),
-//      (QNum.zero, QNum.zero, QNum.zero, QNum.one, QNum.zero, QNum.zero, QNum.zero, QNum.zero),
-//      (QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.one, QNum.zero, QNum.zero, QNum.zero),
-//      (QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.one, QNum.zero),
-//      (QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.one, QNum.zero, QNum.zero),
-//      (QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.zero, QNum.one)
-//    )))
-//  }
-
 }

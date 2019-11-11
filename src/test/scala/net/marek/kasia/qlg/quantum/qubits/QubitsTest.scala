@@ -6,23 +6,11 @@ import net.marek.kasia.qlg.quantum.QNum
 
 
 class QubitsTest extends FunSuite {
-//  test("tensor") {
-//    assert(Qubits.tensor(DenseVector(1.0, 2.0, 0.5), DenseVector(1.0, 0.5)) == DenseVector(1.0, 0.5, 2.0, 1.0, 0.5, 0.25))
-//  }
-//
   test("make qbits from list") {
     assert(new Qubits(1,0,0,1).q == DenseVector(
       QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.one,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero,QNum.zero
     ))
   }
-
-//  test("bin to dec") {
-//    assert(Qubits.binToDec(List(1,0,1,0)) == 10)
-//  }
-
-//  test("dec to bin") {
-//    assert(Qubits.decToBin(10) == List(1,0,1,0))
-//  }
 
   test("measure probability") {
     assert(

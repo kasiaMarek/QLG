@@ -1,7 +1,6 @@
 package net.marek.kasia.qlg.parser
 
 import net.marek.kasia.qlg.exorcism.FunctionOptimization
-import net.marek.kasia.qlg.exorcism.circuitToESOP.ShannonExpansion
 import net.marek.kasia.qlg.parser.exceptions.{ArgumentAlreadyDefinedException, VariableNotDefinedException}
 import net.marek.kasia.qlg.quantum.CircuitExecutor
 import net.marek.kasia.qlg.quantum.circuit.Circuit
@@ -21,53 +20,15 @@ object ParseCQLL {
           va match {
             case One() => state ++ VarInfo(v.name, 1)
             case Zero() => state ++ VarInfo(v.name, 0)
-            case v1: Variable => state ++ new CopyCls(parseVar(state, v1), v.name) ++ VarInfo(v.name, 0)
-            case clsGate: BoolFunction => FunctionOptimization.toQuantumGates(clsGate, v).foldLeft(state ++ VarInfo(v.name, 0))((s, g) => parse(s,g))
+            case v1: Variable => state ++ new ToffoliQ(List(parseVar(state, v1)), v.name) ++ VarInfo(v.name, 0)
+            case clsGate: BoolFunction =>
+              FunctionOptimization
+                .toQuantumGates(clsGate, v)
+                .foldLeft(state ++ VarInfo(v.name, 0))((s, g) => parse(s,g))
           }
         }
       }
       case qg: QGate => parse(state, qg)
-    }
-  }
-
-  def parse(state: ParseState, e: BoolFunction, to:String): ParseState = {
-    e match {
-      case Not(v) => {
-        val (ps, n) = parse(state, v)
-        ps ++ new NotCls(n, to)
-      }
-      case And(l) => {
-        val (ps1, argsList) = l.foldLeft((state, List[String]()))((acc, e) => {
-          val (ps, n) = parse(acc._1, e)
-          (ps, acc._2 :+ n)
-        })
-        ps1 ++ new AndCls(argsList, to)
-      }
-      case Or(l) => {
-        val (ps1, argsList) = l.foldLeft((state, List[String]()))((acc, e) => {
-          val (ps, n) = parse(acc._1, e)
-          (ps, acc._2 :+ n)
-        })
-        ps1 ++ new OrCls(argsList, to)
-      }
-    }
-  }
-
-  def parse(state: ParseState, e: V): (ParseState, String) = {
-      e match {
-      case v: Variable => (state, parseVar(state, v))
-      case One() => {
-        val tmp = state.getTmp
-        (state.nextTmp() ++ VarInfo(tmp, 1), tmp)
-      }
-      case Zero() => {
-        val tmp = state.getTmp
-        (state.nextTmp() ++ VarInfo(tmp, 0), tmp)
-      }
-      case cls: BoolFunction => {
-        val tmp = state.getTmp
-        (parse(state.nextTmp(), cls, tmp) ++ VarInfo(tmp, 0), tmp)
-      }
     }
   }
 

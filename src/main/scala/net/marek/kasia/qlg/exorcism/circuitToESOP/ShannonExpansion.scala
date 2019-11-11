@@ -5,19 +5,18 @@ import net.marek.kasia.qlg.parser._
 object ShannonExpansion {
 
   def shannonExpansion(function: V): ShannonRoot =
-    new ShannonRoot(expand(makeSimple(function), 0, collectVariables(function)))
+    new ShannonRoot(expand(makeSimple(function), 0, collectVariables(function).distinct))
 
   private def expand(function: V, index: Int, variables: List[Variable]): ShannonExpansionTE =
     function match {
-      case c: Const => new ShannonLeaf(if(c == One()) 1 else 0)
-      case _ => {
+      case c: Const => ShannonLeaf(if (c == One()) 1 else 0)
+      case _ =>
         val variable = variables(index)
-        new ShannonNode(
+        ShannonNode(
           variable,
-          expand(makeSimple(function, v => if(v == variable) Zero() else v), index+1, variables),
-          expand(makeSimple(function, v => if(v == variable) One() else v), index+1, variables)
+          expand(makeSimple(function, v => if (v == variable) Zero() else v), index + 1, variables),
+          expand(makeSimple(function, v => if (v == variable) One() else v), index + 1, variables)
         )
-      }
     }
 
   private def collectVariables(function: V): List[Variable] =
@@ -32,7 +31,7 @@ object ShannonExpansion {
 
   def makeSimple(function: V): V = makeSimple(function, v => v)
 
-  private def makeSimple(function: V, applyVal: Variable => V): V = {
+  def makeSimple(function: V, applyVal: Variable => V): V = {
     function match {
       case v: Variable => applyVal(v)
       case Not(v) => NotOptimization(makeSimple(v, applyVal))

@@ -24,8 +24,8 @@ class CQLL extends RegexParsers {
   | "or("~v~","~v~")" ^^
     {case "or("~v1~","~v2~")" => Or(List(v1, v2))}
   | "not("~>v<~")" ^^ Not
-//  | "xor("~v~","~v~")" ^^
-//    { case "xor("~v1~","~v2~")" => Xor(List(v1, v2)) }
+  | "xor("~v~","~v~")" ^^
+    { case "xor("~v1~","~v2~")" => Xor(List(v1, v2)) }
     )
 
   def qGate: Parser[QGate] = (

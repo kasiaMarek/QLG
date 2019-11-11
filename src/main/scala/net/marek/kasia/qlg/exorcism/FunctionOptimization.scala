@@ -10,14 +10,5 @@ object FunctionOptimization {
     val esop = ShannonExpansionToESOP.getESOPForm(se)
     val c = FunctionToQuntCircuit.ESOPToGates(esop, outVariable)
     c
-
   }
-//    FunctionToQuntCircuit.ESOPToGates(
-//      ShannonExpansionToESOP.getESOPForm(
-//        ShannonExpansion.shannonExpansion(function)
-//      ),
-//      outVariable
-//    )
-//  }
-
 }

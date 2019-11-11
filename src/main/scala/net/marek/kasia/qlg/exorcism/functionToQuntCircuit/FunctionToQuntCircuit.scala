@@ -11,7 +11,7 @@ object FunctionToQuntCircuit {
     )(
       (acc, term) => termToGates(term, acc._1, acc._2, outVariable)
     )
-    set.toList.map(NotQ) ::: gates
+    gates ::: set.toList.map(NotQ)
   }
 
   private def termToGates(term: Term, negativePolarization: Set[Variable], list: List[QGate], outVariable: Variable): (Set[Variable], List[QGate]) = {
