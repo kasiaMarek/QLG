@@ -5,17 +5,17 @@ import net.marek.kasia.qlg.parser._
 object ShannonExpansion {
 
   def shannonExpansion(function: V): ShannonRoot =
-    new ShannonRoot(expand(makeSimple(function), 0, collectVariables(function).distinct))
+    new ShannonRoot(expand(simplify(function), collectVariables(function).distinct))
 
-  private def expand(function: V, index: Int, variables: List[Variable]): ShannonExpansionTE =
+  private def expand(function: V, variables: List[Variable]): ShannonExpansionTE =
     function match {
-      case c: Const => ShannonLeaf(if (c == One()) 1 else 0)
+      case c: Const => ShannonLeaf(c)
       case _ =>
-        val variable = variables(index)
+        val variable = variables.head
         ShannonNode(
           variable,
-          expand(makeSimple(function, v => if (v == variable) Zero() else v), index + 1, variables),
-          expand(makeSimple(function, v => if (v == variable) One() else v), index + 1, variables)
+          expand(simplify(function, v => if (v == variable) Zero else v), variables.tail),
+          expand(simplify(function, v => if (v == variable) One else v), variables.tail)
         )
     }
 
@@ -29,48 +29,45 @@ object ShannonExpansion {
       case _ => List()
     }
 
-  def makeSimple(function: V): V = makeSimple(function, v => v)
+  def simplify(function: V): V = simplify(function, identity)
 
-  def makeSimple(function: V, applyVal: Variable => V): V = {
+  def simplify(function: V, applyVal: Variable => V): V = {
     function match {
       case v: Variable => applyVal(v)
-      case Not(v) => NotOptimization(makeSimple(v, applyVal))
-      case And(l) => AndOrOptimizationStrategy(l.map(makeSimple(_, applyVal)), One(), Zero(), And)
-      case Or(l) => AndOrOptimizationStrategy(l.map(makeSimple(_, applyVal)), Zero(), One(), Or)
-      case Xor(l) => XorOptimization(l.map(makeSimple(_, applyVal)))
+      case Not(v) => optimizeNot(simplify(v, applyVal))
+      case And(l) => optimizeAndOr(l.map(simplify(_, applyVal)), One, Zero, And)
+      case Or(l) => optimizeAndOr(l.map(simplify(_, applyVal)), Zero, One, Or)
+      case Xor(l) => optimizeXor(l.map(simplify(_, applyVal)))
       case e => e
     }
   }
 
-  private def XorOptimization(l : List[V]): V = {
-    val isNot = l.count(_.equals(One())) % 2
-    val listOfValues = l.filterNot(e => e.equals(One()) || e.equals(Zero()))
+  private def optimizeXor(l : List[V]): V = {
+    val isNot = l.count(_ == One) % 2
+    val listOfValues = l.filterNot(e => e == One || e == Zero)
     if(listOfValues.isEmpty) {
-      if(isNot == 0) Zero() else One()
+      if(isNot == 0) Zero else One
     } else {
-      if(isNot == 0) Xor(listOfValues) else  Xor(One() :: listOfValues)
+      if(isNot == 0) Xor(listOfValues) else  Xor(One :: listOfValues)
     }
   }
 
-  private def NotOptimization(v : V): V = {
+  private def optimizeNot(v : V): V =
     v match {
-      case Zero() => One()
-      case One() => Zero()
-      case e => Not(e)
+      case Zero => One
+      case One => Zero
+      case _ => Not(v)
     }
-  }
 
-  private def AndOrOptimizationStrategy(l: List[V], weak: Const, strong: Const, constructor: List[V] => BoolFunction): V = {
+  private def optimizeAndOr(l: List[V], weak: Const, strong: Const, constructor: List[V] => BoolFunction): V = {
     if(l.exists(_.equals(strong))) {
       strong
     } else {
       val listOfValues = l.filterNot(_.equals(weak))
-      if(listOfValues.isEmpty) {
-        weak
-      } else if(listOfValues.size == 1) {
-        listOfValues.head
-      } else {
-        constructor(listOfValues)
+      listOfValues.size match {
+        case 0 => weak
+        case 1 => listOfValues.head
+        case _ => constructor(listOfValues)
       }
     }
   }

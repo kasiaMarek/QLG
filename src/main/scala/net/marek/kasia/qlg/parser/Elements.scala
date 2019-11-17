@@ -16,8 +16,8 @@ case class Variable(name: String) extends V
 
 //const
 sealed abstract class Const extends V
-case class One() extends Const
-case class Zero() extends Const
+object One extends Const
+object Zero extends Const
 
 //classical gates
 sealed abstract class BoolFunction extends V

@@ -18,8 +18,8 @@ object ParseCQLL {
           throw new ArgumentAlreadyDefinedException(v.name)
         } else {
           va match {
-            case One() => state ++ VarInfo(v.name, 1)
-            case Zero() => state ++ VarInfo(v.name, 0)
+            case One => state ++ VarInfo(v.name, 1)
+            case Zero => state ++ VarInfo(v.name, 0)
             case v1: Variable => state ++ new ToffoliQ(List(parseVar(state, v1)), v.name) ++ VarInfo(v.name, 0)
             case clsGate: BoolFunction =>
               FunctionOptimization

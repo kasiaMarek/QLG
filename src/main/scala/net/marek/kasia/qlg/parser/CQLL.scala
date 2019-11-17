@@ -12,8 +12,8 @@ class CQLL extends RegexParsers {
   )
 
   def v: Parser[V] = (
-    "1" ^^ (_ => One())
-  | "0" ^^ (_ => Zero())
+    "1" ^^ (_ => One)
+  | "0" ^^ (_ => Zero)
   | clsGate
   | variable
   )
@@ -30,6 +30,7 @@ class CQLL extends RegexParsers {
 
   def qGate: Parser[QGate] = (
     "hdm("~>variable<~")" ^^ Hdm
+      //TODO: make fredkin gate only for 3 qubits
   | "frd("~optLeftControls~variable~","~optLeftControls~variable~optRightControls~")" ^^
       { case "frd("~lc1~v1~","~lc2~v2~lc3~")" => Frd(lc1 ++ lc2 ++ lc3, v1, v2) }
   | "tfl("~optLeftControls~variable~optRightControls~")" ^^

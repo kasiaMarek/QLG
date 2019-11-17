@@ -1,5 +1,6 @@
 package net.marek.kasia.qlg.quantum
 
+import breeze.linalg.{max, min}
 import net.marek.kasia.qlg.quantum.circuit.Circuit
 import net.marek.kasia.qlg.quantum.qubits.Qubits
 
@@ -13,7 +14,9 @@ class CircuitExecutor(val circuit: Circuit, val bits: List[Int], val variableNam
     val circuitLines = circuit.toListOfString()
     val chooseResult = result.measureAllReturnAsListOfBits()
     val probabilities = result.getProbabilitiesOf1ForAll()
-    (for(i <- 0 until size) yield variableNames(i) + "  <" + bits(i) + "> " + circuitLines(i) + " <" + chooseResult(i) + ">" + "  " + probabilities(i)).mkString("\n")
+    val maksLength = min(variableNames.map(_.size).max, 10)
+    val varNamesWithPadding =  variableNames.map(v => v.slice(0, 10) + (for(_ <- 0 until max(0, maksLength - v.length)) yield " ").mkString)
+    (for(i <- 0 until size) yield varNamesWithPadding(i) + "  <" + bits(i) + "> " + circuitLines(i) + " <" + chooseResult(i) + ">" + "  " + probabilities(i)).mkString("\n")
   }
 
   def getResult = result
