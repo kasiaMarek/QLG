@@ -6,6 +6,14 @@ import org.scalatest.prop.TableDrivenPropertyChecks
 
 class FullTest extends FunSuite with TableDrivenPropertyChecks {
 
+    val testCases = Table(
+      ("testCase", "fileName", "resultName", "resultValue"),
+      ("copyTest", "copyTest", "b", 1),
+      ("simpleOrTest", "simpleOrTest", "c", 1),
+      ("function1", "function1", "res", 1),
+      ("function2", "function2", "res", 0)
+    )
+
     test("simple one value test") {
       forAll(testCases) {
         (_: String, fileName: String, resultName: String, resultValue: Int) => {
@@ -19,11 +27,4 @@ class FullTest extends FunSuite with TableDrivenPropertyChecks {
       }
     }
 
-    val testCases = Table(
-      ("testCase", "fileName", "resultName", "resultValue"),
-      ("copyTest", "copyTest", "b", 1),
-      ("simpleOrTest", "simpleOrTest", "c", 1),
-      ("function1", "function1", "res", 1),
-      ("function2", "function2", "res", 0)
-    )
 }

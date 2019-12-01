@@ -1,11 +1,13 @@
-package net.marek.kasia.qlg.exorcism.circuitToESOP
+package net.marek.kasia.qlg.functionTranslation.circuitToESOP
 
 import net.marek.kasia.qlg.parser._
 
 object ShannonExpansion {
 
-  def shannonExpansion(function: V): ShannonRoot =
-    new ShannonRoot(expand(simplify(function), collectVariables(function).distinct))
+  def shannonExpansion(function: V): ShannonRoot = {
+    val variables = collectVariables(function).distinct
+    new ShannonRoot(expand(simplify(function), variables), variables)
+  }
 
   private def expand(function: V, variables: List[Variable]): ShannonExpansionTE =
     function match {

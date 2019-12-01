@@ -1,6 +1,6 @@
 package net.marek.kasia.qlg.parser
 
-import net.marek.kasia.qlg.exorcism.FunctionOptimization
+import net.marek.kasia.qlg.functionTranslation.FunctionOptimization
 import net.marek.kasia.qlg.parser.exceptions.{ArgumentAlreadyDefinedException, VariableNotDefinedException}
 import net.marek.kasia.qlg.quantum.CircuitExecutor
 import net.marek.kasia.qlg.quantum.circuit.Circuit
