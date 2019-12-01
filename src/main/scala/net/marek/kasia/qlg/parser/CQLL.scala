@@ -19,22 +19,31 @@ class CQLL extends RegexParsers {
   )
 
   def clsGate: Parser[BoolFunction] = (
-    "and("~v~","~v~")" ^^
-    { case "and("~v1~","~v2~")" => And(List(v1, v2)) }
-  | "or("~v~","~v~")" ^^
-    {case "or("~v1~","~v2~")" => Or(List(v1, v2))}
+    "and("~>vList<~")" ^^ And
+  | "or("~>vList<~")" ^^ Or
   | "not("~>v<~")" ^^ Not
-  | "xor("~v~","~v~")" ^^
-    { case "xor("~v1~","~v2~")" => Xor(List(v1, v2)) }
+  | "xor("~>vList<~")" ^^ Xor
     )
+
+  def vList: Parser[List[V]] = rep1sep(v, ",")
 
   def qGate: Parser[QGate] = (
     "hdm("~>variable<~")" ^^ Hdm
-      //TODO: make fredkin gate only for 3 qubits
-  | "frd("~optLeftControls~variable~","~optLeftControls~variable~optRightControls~")" ^^
-      { case "frd("~lc1~v1~","~lc2~v2~lc3~")" => Frd(lc1 ++ lc2 ++ lc3, v1, v2) }
+//  | "frd("~optLeftControls~variable~","~optLeftControls~variable~optRightControls~")" ^^
+//      { case "frd("~lc1~v1~","~lc2~v2~lc3~")" => Frd(lc1 ++ lc2 ++ lc3, v1, v2) }
+  | "frd(:"~variable~","~variable~","~variable~")" ^^
+    { case "frd(:"~c~","~v1~","~v2~")" => Frd(List(c), v1, v2) }
+  | "frd("~variable~",:"~variable~","~variable~")" ^^
+    { case "frd("~v1~",:"~c~","~v2~")" => Frd(List(c), v1, v2) }
+  | "frd(:"~variable~","~variable~",:"~variable~")" ^^
+    { case "frd("~v1~","~v2~",:"~c~")" => Frd(List(c), v1, v2) }
+
+  | "swp("~variable~","~variable~")" ^^
+      {case "swp("~v1~","~v2~")" => Frd(List(), v1, v2)}
+
   | "tfl("~optLeftControls~variable~optRightControls~")" ^^
     {case "tfl("~lc1~v~lc2~")" => Tfl(lc1 ++ lc2, v)}
+
   | "not("~>variable<~")" ^^ (x => NotQ(x))
   )
 
