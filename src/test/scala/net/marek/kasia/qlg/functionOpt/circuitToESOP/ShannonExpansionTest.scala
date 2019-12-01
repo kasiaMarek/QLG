@@ -1,4 +1,4 @@
-package net.marek.kasia.qlg.exorcism.circuitToESOP
+package net.marek.kasia.qlg.functionOpt.circuitToESOP
 
 import net.marek.kasia.qlg.parser.{And, Not, One, Or, Variable, Xor, Zero}
 import org.scalatest.FunSuite

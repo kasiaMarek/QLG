@@ -14,7 +14,7 @@ class CircuitExecutor(val circuit: Circuit, val bits: List[Int], val variableNam
     val circuitLines = circuit.toListOfString()
     val chooseResult = result.measureAllReturnAsListOfBits()
     val probabilities = result.getProbabilitiesOf1ForAll()
-    val maksLength = min(variableNames.map(_.size).max, 10)
+    val maksLength = min(variableNames.map(_.length).max, 10)
     val varNamesWithPadding =  variableNames.map(v => v.slice(0, 10) + (for(_ <- 0 until max(0, maksLength - v.length)) yield " ").mkString)
     (for(i <- 0 until size) yield varNamesWithPadding(i) + "  <" + bits(i) + "> " + circuitLines(i) + " <" + chooseResult(i) + ">" + "  " + probabilities(i)).mkString("\n")
   }

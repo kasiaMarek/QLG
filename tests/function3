@@ -1,0 +1,6 @@
+a = 0
+b = 1
+not(a)
+c = a
+d = 0
+f = and(a, b, or(c, d))

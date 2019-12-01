@@ -29,8 +29,6 @@ class CQLL extends RegexParsers {
 
   def qGate: Parser[QGate] = (
     "hdm("~>variable<~")" ^^ Hdm
-//  | "frd("~optLeftControls~variable~","~optLeftControls~variable~optRightControls~")" ^^
-//      { case "frd("~lc1~v1~","~lc2~v2~lc3~")" => Frd(lc1 ++ lc2 ++ lc3, v1, v2) }
   | "frd(:"~variable~","~variable~","~variable~")" ^^
     { case "frd(:"~c~","~v1~","~v2~")" => Frd(List(c), v1, v2) }
   | "frd("~variable~",:"~variable~","~variable~")" ^^

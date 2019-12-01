@@ -1,6 +1,6 @@
 package net.marek.kasia.qlg.parser
 
-import net.marek.kasia.qlg.exorcism.FunctionOptimization
+import net.marek.kasia.qlg.functionOpt.FunctionOptimization
 import net.marek.kasia.qlg.parser.exceptions.{ArgumentAlreadyDefinedException, VariableNotDefinedException}
 import net.marek.kasia.qlg.quantum.CircuitExecutor
 import net.marek.kasia.qlg.quantum.circuit.Circuit
@@ -9,7 +9,7 @@ object ParseCQLL {
 
   def parseToCircuitExec(p: List[Expression]): CircuitExecutor = ParseStateParser.parse(parse(p))
 
-  def parse(p: List[Expression]): ParseState = p.foldLeft(new ParseState(List(), List(), 0))((ps, e) => parse(ps, e))
+  def parse(p: List[Expression]): ParseState = p.foldLeft(new ParseState(List(), List()))((ps, e) => parse(ps, e))
 
   def parse(state: ParseState, e: Expression): ParseState = {
     e match {
@@ -53,11 +53,9 @@ object ParseCQLL {
 
 case class VarInfo(name: String, init: Int)
 
-class ParseState(val varInfo: List[VarInfo], val gates: List[DSLAnyGate], val tmp: Int) {
-  def ++(gate: DSLAnyGate): ParseState = new ParseState(varInfo, gates :+ gate, tmp)
-  def ++(newVar: VarInfo): ParseState = new ParseState(varInfo :+ newVar, gates, tmp)
-  def getTmp: String = "$tmp_" + tmp
-  def nextTmp(): ParseState = new ParseState(varInfo, gates, tmp + 1)
+class ParseState(val varInfo: List[VarInfo], val gates: List[DSLAnyGate]) {
+  def ++(gate: DSLAnyGate): ParseState = new ParseState(varInfo, gates :+ gate)
+  def ++(newVar: VarInfo): ParseState = new ParseState(varInfo :+ newVar, gates)
 }
 
 object ParseStateParser {

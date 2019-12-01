@@ -1,4 +1,4 @@
-package net.marek.kasia.qlg.exorcism.circuitToESOP
+package net.marek.kasia.qlg.functionOpt.circuitToESOP
 
 import net.marek.kasia.qlg.parser.{Const, Variable}
 

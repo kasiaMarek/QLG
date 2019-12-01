@@ -1,7 +1,6 @@
-package net.marek.kasia.qlg.exorcism
+package net.marek.kasia.qlg.functionOpt
 
 case class ESOP(terms: List[Term]) {
-  println(toString)
   override def toString: String = terms.map(_.toString).mkString(" + ")
 }
 

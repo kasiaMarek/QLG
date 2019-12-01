@@ -12,7 +12,6 @@ sealed trait DSLQGate extends DSLAnyGate {
   override def toCircuitGateList(map: DSLVariable => Int): List[CircuitGate] = List(toCircuitGate(map))
 }
 
-//net.marek.kasia.qlg.quantum gates
 class HadamardQ(arg: DSLVariable) extends DSLQGate {
   override def toCircuitGate(map: DSLVariable => Int): CircuitGate = new HadamardGate(map(arg))
 }

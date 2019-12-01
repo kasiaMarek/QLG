@@ -1,4 +1,4 @@
-package net.marek.kasia.qlg.exorcism
+package net.marek.kasia.qlg.functionOpt
 
 import net.marek.kasia.qlg.parser.{Const, One, Variable}
 

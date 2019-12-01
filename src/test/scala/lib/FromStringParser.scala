@@ -1,4 +1,4 @@
-package net.marek.kasia.qlg
+package lib
 
 import net.marek.kasia.qlg.parser.{CQLL, Expression, ParseCQLL}
 import net.marek.kasia.qlg.quantum.CircuitExecutor

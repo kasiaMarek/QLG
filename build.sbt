@@ -21,7 +21,4 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 // https://mvnrepository.com/artifact/org.scala-lang.modules/scala-parser-combinators
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
 
-
-
-
 resolvers += "Sonatype Releases" at "https://oss.sonatype.org/content/repositories/releases/"

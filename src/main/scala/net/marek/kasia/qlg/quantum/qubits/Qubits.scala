@@ -1,16 +1,12 @@
 package net.marek.kasia.qlg.quantum.qubits
 
+import java.util
+
 import breeze.linalg.DenseVector
-import breeze.numerics.log
 import org.apache.commons.math3.distribution.EnumeratedDistribution
 import net.marek.kasia.qlg.quantum.QNum
 
 case class Qubits(q: DenseVector[QNum], size: Int) {
-
-  def this(q: DenseVector[QNum]) {
-    //TODO: test if size is ok
-    this(q, log(2.0, q.length.toDouble).toInt)
-  }
 
    def this(list: List[Int]) {
     this(list.map(e => if(e == 0) Qubits.zero else Qubits.one).foldRight(DenseVector(QNum.one))(Qubits.tensor), list.length)
@@ -30,10 +26,9 @@ case class Qubits(q: DenseVector[QNum], size: Int) {
 
   def measureAllReturnAsInt(): Int = {
     import org.apache.commons.math3.util.Pair
-    import java.util.ArrayList
     import java.lang.Double
 
-    val mapping = new ArrayList[Pair[Int, Double]]()
+    val mapping = new util.ArrayList[Pair[Int, Double]]()
     q.data.zipWithIndex.map(p => new Pair(p._2, new Double((p._1 * p._1).toDouble()))).foreach(mapping.add)
     new EnumeratedDistribution[Int](mapping).sample()
   }

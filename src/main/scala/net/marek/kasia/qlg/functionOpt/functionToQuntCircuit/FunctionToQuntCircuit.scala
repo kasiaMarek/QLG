@@ -1,6 +1,6 @@
-package net.marek.kasia.qlg.exorcism.functionToQuntCircuit
+package net.marek.kasia.qlg.functionOpt.functionToQuntCircuit
 
-import net.marek.kasia.qlg.exorcism.{ESOP, Term}
+import net.marek.kasia.qlg.functionOpt.{ESOP, Term}
 import net.marek.kasia.qlg.parser.{NotQ, One, QGate, Tfl, Variable}
 
 object FunctionToQuntCircuit {

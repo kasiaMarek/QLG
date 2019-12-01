@@ -1,7 +1,7 @@
-package net.marek.kasia.qlg.exorcism
+package net.marek.kasia.qlg.functionOpt
 
-import net.marek.kasia.qlg.exorcism.circuitToESOP.{ShannonExpansion, ShannonExpansionToESOP}
-import net.marek.kasia.qlg.exorcism.functionToQuntCircuit.FunctionToQuntCircuit
+import net.marek.kasia.qlg.functionOpt.circuitToESOP.{ShannonExpansion, ShannonExpansionToESOP}
+import net.marek.kasia.qlg.functionOpt.functionToQuntCircuit.FunctionToQuntCircuit
 import net.marek.kasia.qlg.parser.{QGate, V, Variable}
 
 object FunctionOptimization {
