@@ -6,7 +6,7 @@ object Main {
     if (args.isEmpty) {
       throw new NoArgsProvidedException()
     }
-    val outputFile = if (args.length == 1) args(0).replace(".txt", "") + "Result" else args(1)
-    new InputOutputParser(Some(args(0)), Some(outputFile)).parse()
+    val outputFile = if (args.length == 1) Option.empty else Some(args(1))
+    new InputOutputParser(Some(args(0)), outputFile).parse()
   }
 }

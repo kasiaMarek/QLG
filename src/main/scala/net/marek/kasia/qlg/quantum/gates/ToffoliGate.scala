@@ -9,20 +9,7 @@ class ToffoliGate(val control: List[Int], val index: Int) extends ControlGate {
     this(List(singleControl), index)
   }
 
-  def getGate(size:Int): CSCMatrix[QNum] = {
-    val controlsVals = getUnsortedListOfVal(size, control)
-    val indexVal = getUnsortedListOfVal(size, index)
-
-    recGetGate(
-      size,
-      (i: Int) => {
-        val ic = controlsVals.fold(i)((acc, con) => acc | 1 << con)
-        (ic | 1 << indexVal.head, ic)
-      },
-      (i: Int) => controlsVals.exists(c => (i >> c) % 2 == 0),
-      indexVal ::: controlsVals
-    )
-  }
+  def getGate(size: Int): CSCMatrix[QNum] = getGate(size, i => (i, i ^ (1 << (size - index - 1))), control)
 
   override def toString(size: Int): Array[Char] = {
     (for (i <- 0 until size) yield

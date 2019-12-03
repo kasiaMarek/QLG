@@ -13,5 +13,4 @@ class FredkinGateTest extends FunSuite {
     assert(new FredkinGate(List(2, 1),(0,3)) * new Qubits(0,0,1,1) == new Qubits(0,0,1,1))
     assert(new FredkinGate(List(2, 1, 4),(0,3)) * new Qubits(0,1,1,1,1) == new Qubits(1,1,1,0,1))
   }
-
 }

@@ -8,18 +8,17 @@ class FredkinGate(val control: List[Int], val swap:(Int,Int)) extends ControlGat
     this(List(singleControl), swap)
   }
 
-  def getGate(size:Int): CSCMatrix[QNum] = {
-    val controlIndices = getUnsortedListOfVal(size, control)
-    val swapIndices = getUnsortedListOfVal(size, swap._1, swap._2)
+  def getGate(size: Int): CSCMatrix[QNum] = getGate(size, genPair(size), control)
 
-    recGetGate(
-      size,
-      (i: Int) => {
-        val ic = controlIndices.fold(i)((acc, con) => acc | 1 << con)
-        (ic | 1 << swapIndices(0) , ic | 1 << swapIndices(1))
-      },
-      (i: Int) => controlIndices.exists(c => (i >> c) % 2 == 0) || (i >> swapIndices(0)) % 2 == (i >> swapIndices(1)) % 2,
-      controlIndices ::: swapIndices
+  def getValueOnIndex(num: Int, index: Int): Int = (num >> index)%2
+
+  def genPair(size: Int)(i: Int) = {
+    val mappedSwap = (size - swap._1 - 1, size - swap._2 - 1)
+    val onSwapIndex = (getValueOnIndex(i, mappedSwap._1), getValueOnIndex(i, mappedSwap._2))
+    (
+      i,
+      i ^ (onSwapIndex._1 << mappedSwap._2) ^ (onSwapIndex._2 << mappedSwap._2)
+        ^ (onSwapIndex._1 << mappedSwap._1) ^ (onSwapIndex._2 << mappedSwap._1)
     )
   }
 
