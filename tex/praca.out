@@ -1,0 +1,59 @@
+\BOOKMARK [0][-]{chapter.1}{Wstep}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Logika klasyczna}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Funkcja boolowska}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Podstawowe funkcje boolowskie}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{Kanoniczna postac sumacyjna \(SOP\)}{section.2.1}% 5
+\BOOKMARK [1][-]{section.2.2}{Uk\233ady logiczne}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{Model uk\233adu kwantowego}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Stan kwantowy kubitu}{chapter.3}% 8
+\BOOKMARK [2][-]{subsection.3.1.1}{Notacja Diraca}{section.3.1}% 9
+\BOOKMARK [1][-]{section.3.2}{Stan kwantowy rejestru kubit\363w}{chapter.3}% 10
+\BOOKMARK [2][-]{subsection.3.2.1}{Stan rejestu kubit\363w a stan\363w kubit\363w}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.2}{Splatanie kwantowe}{section.3.2}% 12
+\BOOKMARK [1][-]{section.3.3}{Bramka kwantowa}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.4}{Wybrane bramki kwantowe}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.4.1}{Bramka NOT}{section.3.4}% 15
+\BOOKMARK [2][-]{subsection.3.4.2}{Uog\363lniona bramka Toffoliego}{section.3.4}% 16
+\BOOKMARK [2][-]{subsection.3.4.3}{Bramka SWAP}{section.3.4}% 17
+\BOOKMARK [2][-]{subsection.3.4.4}{Bramka Fredkina}{section.3.4}% 18
+\BOOKMARK [2][-]{subsection.3.4.5}{Bramka Hadamarda}{section.3.4}% 19
+\BOOKMARK [1][-]{section.3.5}{Uk\233ad kwantowy}{chapter.3}% 20
+\BOOKMARK [0][-]{chapter.4}{Analiza problemu}{}% 21
+\BOOKMARK [1][-]{section.4.1}{Za\233ozenia funkcjonalne}{chapter.4}% 22
+\BOOKMARK [2][-]{subsection.4.1.1}{Za\233ozenia dotyczace opisu wejsciowego}{section.4.1}% 23
+\BOOKMARK [2][-]{subsection.4.1.2}{Za\233ozenia dotyczace zwracanego wyniku}{section.4.1}% 24
+\BOOKMARK [1][-]{section.4.2}{Za\233ozenia niefunkcjonalne}{chapter.4}% 25
+\BOOKMARK [0][-]{chapter.5}{Projekt systemu}{}% 26
+\BOOKMARK [1][-]{section.5.1}{Architektura Systemu}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.2}{Jezyk wejsciowy i Parser}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.5.2.1}{Gramatyka}{section.5.2}% 29
+\BOOKMARK [2][-]{subsection.5.2.2}{Analiza leksykalna}{section.5.2}% 30
+\BOOKMARK [2][-]{subsection.5.2.3}{Instrukcje i analiza semantyczna}{section.5.2}% 31
+\BOOKMARK [1][-]{section.5.3}{Translator}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.4}{Uk\233ad kwantowy z rejestrem}{chapter.5}% 33
+\BOOKMARK [2][-]{subsection.5.4.1}{Przyk\233ad}{section.5.4}% 34
+\BOOKMARK [1][-]{section.5.5}{Symulator}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.5.1}{Generacja macierzy bramek z ich definicji}{section.5.5}% 36
+\BOOKMARK [1][-]{section.5.6}{Wyjscie}{chapter.5}% 37
+\BOOKMARK [0][-]{chapter.6}{Translacja uk\233ad\363w logicznych do uk\233ad\363w kwantowych}{}% 38
+\BOOKMARK [1][-]{section.6.1}{Problem translacji}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.2}{Podejscie naiwne}{chapter.6}% 40
+\BOOKMARK [2][-]{subsection.6.2.1}{Copy}{section.6.2}% 41
+\BOOKMARK [2][-]{subsection.6.2.2}{Not}{section.6.2}% 42
+\BOOKMARK [2][-]{subsection.6.2.3}{And}{section.6.2}% 43
+\BOOKMARK [1][-]{section.6.3}{Wyrazanie funkcji boolowskich za pomoca uk\233ad\363w kwantowych}{chapter.6}% 44
+\BOOKMARK [2][-]{subsection.6.3.1}{Wejscie}{section.6.3}% 45
+\BOOKMARK [2][-]{subsection.6.3.2}{Przyk\233ad}{section.6.3}% 46
+\BOOKMARK [2][-]{subsection.6.3.3}{Teoretyczne minimum}{section.6.3}% 47
+\BOOKMARK [1][-]{section.6.4}{Postac ESOP}{chapter.6}% 48
+\BOOKMARK [1][-]{section.6.5}{Tworzenie uk\233adu kwantowego z postaci ESOP}{chapter.6}% 49
+\BOOKMARK [2][-]{subsection.6.5.1}{Algorytm}{section.6.5}% 50
+\BOOKMARK [1][-]{section.6.6}{Rozwiniecie Shannona}{chapter.6}% 51
+\BOOKMARK [2][-]{subsection.6.6.1}{Algorytm}{section.6.6}% 52
+\BOOKMARK [0][-]{chapter.7}{Implementacja systemu}{}% 53
+\BOOKMARK [1][-]{section.7.1}{Opis technologii}{chapter.7}% 54
+\BOOKMARK [1][-]{section.7.2}{Instrukcja ob\233ugi}{chapter.7}% 55
+\BOOKMARK [0][-]{chapter.8}{Przyk\233ady uzycia}{}% 56
+\BOOKMARK [0][-]{chapter.9}{Podsumowanie}{}% 57
+\BOOKMARK [0][-]{chapter*.17}{Bibliografia}{}% 58
+\BOOKMARK [0][-]{appendix.A}{Uog\363lniona bramka Toffoliego}{}% 59

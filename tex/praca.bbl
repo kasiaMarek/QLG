@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+
+\bibitem{ESOPtoTFL}
+K.~Fazel, M.~Thornton, J.~Rice.
+\newblock Esop-based toffoli gate cascade generation.
+\newblock strony 206 -- 209, 09 2007.
+
+\bibitem{QCS}
+J.~Hui.
+\newblock Quantum computing series.
+\newblock Strona:
+  \url{https://medium.com/@jonathan_hui/qc-quantum-computing-series-10ddd7977abd},
+  2017.
+
+\bibitem{CL}
+A.~Ligęza.
+\newblock Elementy logiki dla informatyków, wykład iii, elementy logiki.
+  algebra boole’a. analiza i synteza układów logicznych.
+\newblock Strona:
+  \url{https://ai.ia.agh.edu.pl/_media/pl:dydaktyka:logic:logika-boole-synthesis-9.pdf}.
+
+\bibitem{QCL}
+A.~Muthukrishnan.
+\newblock Classical and quantum logic gates: An introduction to quantum
+  computing.
+\newblock 1999.
+
+\bibitem{QC&CI}
+M.~A. Nielsen,  I.~L. Chuang.
+\newblock {\em Quantum Computation and Quantum Information, 10th Anniversary
+  Edition}.
+\newblock Cambridge University Press, 2010.
+
+\bibitem{Exorcism2}
+N.~Song,  M.~Perkowski.
+\newblock Exorcism-mv-2: Minimization of exclusive sum of products expressions
+  for multiple-valued input incompletely specified functions.
+\newblock strony 132--137, 01 1993.
+
+\bibitem{VarReordWaveCasc}
+D.~Voudouris, M.~Sampson, G.~Papakonstantinou.
+\newblock Variable reordering for reversible wave cascades.
+
+\end{thebibliography}

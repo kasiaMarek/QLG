@@ -1,0 +1,34 @@
+\chapter{Wstęp}
+\thispagestyle{chapterBeginStyle}
+
+W latach 70. po raz pierwszy zostało użyte sformułowanie "kwantowej teorii informacji" suregujące użycie efektów kwantowych do manipulacji informacją. Niedługo potem pojawiła się idea układów kwantowych, które analogicznie do układów logicznych mają pozwalać na przeprawadzanie obliczeń. W 1994 temat komputerów kwantowych stał się bardzo interesujący, gdy Peter Shor opublikował algorytm wykorzystujący układy kwantowe, który rozwiązuje problem faktoryzaji w czasie wielomianowym. Najlepsze znane algorytmy na komputery klasyczne wymagają czasu wykładniczego. Pomimo, że fizyczne budowanie układów kwantowych rozwija się powoli to podstawy teoretyczne są są od dawna dobrze rozwinięte.
+
+Układy kwantowe znacznie różnią się od klasycznych układów logicznych. Chociaż analogicznie do klasycznych bitów operują na kubitach oraz składają się z bramek kwantowych tak jak układy logiczne z bramek logicznych to bramki kwantowe różnią się od bramek klasycznych, a kubity mogą nieść znacznie więcej informacji niż klasyczne bity. Pomimo różnic każdy problem rozwiązywany przez komputer klasyczny może zostać rozwiązany przez komputer kwantowy.
+
+Ta praca zajmuje się zależnościami między komputerami klasycznymi, a kwantowymi. Problemami rozważanymi w tej pracy jest translacja układów logicznych, będących bazą działania komputerów klasycznych, do układów kwantowych oraz symulacja działania układu kwantowego za pomocą komputera klasycznego dla wybranego zestawu bramek kwantowych. 
+
+Rozdział \ref{rozdzial0a} zawiera opis logiki klasycznej.
+
+Rozdział \ref{rozdzial0b} jest wprowadzeniem w obliczenia kwantowe i przybliża najważniejsze z nimi związane pojęcia. Następnie prezentuje też zestaw bramek kwnatowych, które będą dalej używane w tej pracy.
+
+Rozdział \ref{rozdzial1} zawiera definuje cele tej pracy.
+
+Rozdział \ref{rozdzial2} zawiera schemat architektury systemu oraz opisy poszczególnych komponentów.
+
+Do rozdziału \ref{rozdzial2a} został wydzielony opis zagadanienia translacji.
+
+W rozdziale \ref{rozdzial3} są omówione szczegóły implementacyjne. Opisane są użyte technologie oraz sposób użycia.
+
+Ostatni rozdział \ref{rozdzial4} zawiera przykładowe programy wejściowe oraz ich omówienie.
+
+% \[
+%     \Qcircuit @C=1.5em @R=1.5em {
+%         \lstick{a} & \targ & \ctrl{1} & \qw & \qw & \qw & \qw & \rstick{\neg a} \qw \\
+%         \lstick{b} & \targ & \ctrl{3} & \qw & \qw & \qw & \qw & \rstick{\neg b} \qw \\
+%         \lstick{c} & \qw & \qw & \targ & \ctrl{1} & \qw & \ctrl{2} & \rstick{\neg c} \qw \\
+%         \lstick{d} & \qw & \qw & \targ & \ctrl{2} & \qw & \qw & \rstick{\neg d} \qw \\
+%         \lstick{0} & \qw & \targ & \qw & \qw & \qw & \ctrl{1} & \rstick{\neg (a \lor b)} \qw \\
+%         \lstick{0} & \qw & \qw & \qw & \targ & \targ & \ctrl{1} & \rstick{c \lor d} \qw\\
+%         \lstick{0} & \qw & \qw & \qw & \qw & \qw & \targ & \rstick{\neg (a \lor b) \land (c \lor d) \land \neg c} \qw
+%     }
+% \]

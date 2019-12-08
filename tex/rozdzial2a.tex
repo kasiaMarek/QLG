@@ -1,0 +1,264 @@
+\chapter{Translacja układów logicznych do układów kwantowych}
+\thispagestyle{chapterBeginStyle}
+\label{rozdzial2a}
+Jednym z najważniejszych zagadnień, którymi zajmuje się ta praca, jest translacja układów logicznych, rozumianych jako zestaw funkcji boolowskich (rodział \ref{rozdzial0a}), do układów kwantowych.
+\section{Problem translacji}
+W przeciwieństwie do bramek logicznych, operacje składające się na układ kwantowy muszą być unitarne. W szczególności znaczy to, że przyjmują na wejściu tyle samo bitów ile zwracają na wyjściu. Zatem chcąc wyrazić te same operacje, które wykonuje układ logiczny za pomocą układu kwantowego, traktowanego tutaj jako pojedyncza operacja, należałoby odpowiednio zwiększyć liczbę bitów na wejściu/wyjściu i następnie zignorować te "dodatkowe" bity na wejściu/wyjściu. Nie zapewnia to jednak, że tak stworzone mapowanie przedstawione jako macierz będzie poprawną bramkę kwantową (tzn. czy macierz ta będzie unitarna).
+\par Weźmy na przykład bramkę układ logiczny składający się z pojedynczej bramki $AND$. Żeby zachować stałą liczbę bitów na wejściu i wyjściu możemy stworzyć funkcję:
+\[f_{AND}(a,b) = (0, ab)\]
+Tak stworzona fukcja nie jest nawet odwracalna, co jest warunkiem koniecznym unitarności. Co więcej nie jestnieje taka funckcja boolowska $h$
+\[f_{AND}(a,b) = (h(a,b), ab)\]
+żeby $f_{AND}$ było funkcją odwracalną.
+\par Dlatego symulowanie układów logicznych za pomocą układów kwantowych wymaga czasami wprowadzenia dodatków bitów, poza oczywistym rozszerzeniem wyjścia lub wejścia, tak by były równoliczne.
+\section{Podejście naiwne}
+\label{naive}
+Jeżeli jednak stworzony układ kwantowy nie jest pojedynczą bramką, a ciągiem operacji, to każda z tych operacji musi być uniratna. Oznacza to w szczególności, że nie tylko liczbą bitów na wejściu do układu i wyjściu z układu muszą być sobie równe, ale że liczba bitów, na których bramki kwantowe operują jest stała. W szczególności nie można dokonać "rodzielenia kabla" jak to się dzieje w przypadku układów klasycznych.
+\par Przykładowym rozwiązaniem tego problemu mogłoby być wprowadzenie rozszerzenie rejestru kubitów, tak by każdej zmiennej odpowiadała Dlatego o każdej takiej opracji będziemy myśleć jako o bramce $COPY$. Której zachowanie można zapisać za pomocą funkcji następująco:
+\[COPY(a) = (a,a)\] 
+\par Jeżeli potrafimy wyrazić bramkę $COPY$ oraz zestaw bramek logicznych tworzących układ funkcjonalnie zupełny za pomocą bramek kwantowych to potrafimy wyrazić każdy układ logiczny za pomocą układu kwantowego.
+\par Zatem naturalnie pierwszym podejściem do problemu translacji układów logicznych na kwantowe jest wyrażenie tego układu używając jedynie pewnego ograniczonego (zupełnego) zestawu bramek, na przykład $COPY, NOT, AND$, a następnie bezpośrednia zamiana każdej z tych operacji na bramki kwantowe.
+\subsection{Copy}
+Ze względu na stałą liczbę kubitów w układzie kwantowym, każda bramka $COPY$ wymaga powiększenia rejestru wejściowego o jeden bit. Zatem "kwantowa bramka $COPY$" będzie dokonywała mapowania 
+\[C(a,0) = (a,a)\]
+dla $a \in \{0,1\}$.
+\par Operację te można wyrazić za pomocą bramki Feymana
+\[
+    \Qcircuit @C=1.5em @R=1.5em {
+        \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
+        \lstick{\ket{0}} & \targ & \rstick{\ket{0 \otimes a} = \ket{a}} \qw
+    }
+\]
+\subsection{Not}
+Logicznej opracji $NOT$ odpowiada bramka kwantowa $NOT$.
+\subsection{And}
+Weźmy funkcję
+\[T(a,b,c) = (a,b, c \otimes ab)\]
+Wtedy jeżeli $c = 0$ to
+\[T(a,b,0) = (a,b, ab)\]
+Operacji tej odpowiada bramka Toffoliego:
+\[
+    \Qcircuit @C=1.5em @R=1.5em {
+        \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
+        \lstick{\ket{b}} & \ctrl{1} & \rstick{\ket{b}} \qw \\
+        \lstick{\ket{0}} & \targ & \rstick{\ket{0 \otimes ab} = \ket{ab}} \qw
+    }
+\]
+Zatem po wprowadzeniu dodatkowego bitu 0, można obliczyć $AND$ za pomocą bramki Toffoliego.
+% \par Analogicznie można przedstawić bramkę $OR$ używając na przykład bramki Fredkina
+% \[
+%     \Qcircuit @C=1.5em @R=1.5em {
+%     \lstick{\ket{a}} & \ctrl{2} & \rstick{\ket{a}} \qw \\
+%     \lstick{\ket{b}} & \qswap & \rstick{\ket{\overline{a}b + a*1} = \ket{b + a}} \qw \\
+%     \lstick{\ket{1}} & \qswap & \rstick{\ket{\overline{a}*1 + ab} = \ket{\overline{a} + b}} \qw
+%     }
+% \]
+% \par Jedynie jedno z wyjść zawiera oczekiwany wynik dwa pozostałe są nieistotne (z ang. 'garbage outputs'). Prowadząc jednak obliczenia łatwo zauważyć, że sytuacja przy liczeniu $AND$ za pomocą bramki Toffoliego jest lepsza niż przy liczeniu $OR$ za pomocą bramki Fredkina.
+% W pierwszym przypadku na wyjściu pojawiają się dodatkowo $a$ i $b$, które były wejściem do funkcji. Zatem mogą być wykorzystane do dalszych obliczeń jeśli okaża się przydatne. Deklarując na przykład jakieś zmienne w programie oczekujemy, że będziemy mogli wykorzystać je w dowolnym momencie później. Zatem 'nie gubienie' tych wartości wydaje się rozsądne.
+% \par Idąc w zgodzie z tą logiką można wyrazić $a \lor b = \neg(\neg a \land \neg b )$. Wtedy można utworzyć baramkę $OR$ w następujący sposób
+% \[
+%     \Qcircuit @C=1.5em @R=1.5em {
+%         \lstick{\ket{a}} & \targ & \ctrl{1} & \targ & \rstick{\ket{a}} \qw \\
+%         \lstick{\ket{b}} & \targ & \ctrl{1} & \targ & \rstick{\ket{b}} \qw \\
+%         \lstick{\ket{0}} & \qw & \targ & \targ & \rstick{\ket{a + b}} \qw
+%     }
+% \]
+\section{Wyrażanie funkcji boolowskich za pomocą układów kwantowych}
+\subsection{Wejście}
+W tej pracy, zgodnie z modelem przedstawionym w rozdziale \ref{rozdzial0a}, myślimy jako o wektorze funkcji boolowskich. Zatem wejściem do translatora jest funkcja boolowska, ponieważ będzimy zajmować się "jedną na raz". Dodatkowo zakładamy, że każda zadeklarowana zmienna jest również częścią wyjścia, zatem nie możemy "zatracić" wartości tych zmiennych.
+\subsection{Przykład}
+Weźmy przykładową funkcję
+\[f(a,b,c) = b + a\overline{c} = b \lor (a \land (\neg c))\]
+Korzystając z metod translacji opisanych w rozdziale \ref{naive}, można przestawić tę funkcję w następujący sposób:
+\[
+    \Qcircuit @C=1.5em @R=1.5em {
+        \lstick{\ket{a}} & \qw & \ctrl{2} & \qw & \qw & \qw & \qw & \rstick{\ket{a}} \qw \\
+        \lstick{\ket{b}} & \qw & \qw & \qw & \targ & \ctrl{2} & \targ & \rstick{\ket{b}} \qw \\
+        \lstick{\ket{c}} & \targ & \ctrl{1} & \targ & \qw & \qw & \qw & \rstick{\ket{c}} \qw \\
+        \lstick{\ket{0}} & \qw & \targ & \qw & \targ & \ctrl{1} & \targ & \rstick{\ket{a\overline{c}}} \qw \\
+        \lstick{\ket{0}} & \qw & \qw & \qw & \qw & \targ & \targ & \rstick{\ket{b + a\overline{c}}} \qw
+    }
+\]
+Na wejściu zostały dodane dwa bity. Używając strategii tłumaczenia każdej operacji $AND, OR, NOT$ na zestaw bramek kwantowych liczba dodatkowych kubitów na wejściu rośnie z sumaryczną liczbą bramek $OR$ i $AND$. Jeden bit na wejściu jest konieczny to przechowania wyniku funkcji, ale wartości przechowywany na reszcie z dodatkowych kubitów są niestotne (z ang. garbage). Kubity są zasobami ograniczonymi, których użycie warto minimalizować i zastanowić się jak inaczej podejść do problemu tanslacji.
+\subsection{Teoretyczne minimum}
+\begin{lemma}
+    Z każdej funkcji boolowskiej $f(\vec{x}) = f(x_0, x_1, \ldots x_n)$, dla pewnego $n \in \mathbb{N}$ oraz $\vec{x} \in \{0, 1\}^n$, można stworzyć funkcję $f_Q : \{0, 1\}^{n+1}\rightarrow \{0, 1\}^{n+1}$, dla której 
+    \[f_Q(x_0, x_1, \ldots x_n, 0) = (x_0, x_1, \ldots x_n, f(x_0, x_1, \ldots x_n))\] 
+    oraz, której odpowiada macierz unitarna wymiarów $2^{n+1} \times 2^{n+1}$.
+\end{lemma}
+\begin{proof}
+    Zdefiniujmy $f_Q$ następująco
+    \[f_Q(x_0, x_1, \ldots x_n, c) = (x_0, x_1, \ldots x_n, c \otimes f(\vec{x}))\]
+    Dla c = 0 mamy wtedy
+    \[f_Q(x_0, x_1, \ldots x_n, 0) = (x_0, x_1, \ldots x_n, 0 \otimes f(\vec{x}))\]
+    \par Dla tak zdefiniowanej funkcji $f_Q$ mamy następujące mapowanie
+    \[\ket{x_0', x_1', \ldots x_n', 0} \rightarrow \ket{x_0', x_1', \ldots x_n', f(\vec{x'})} = \ket{x_0', x_1', \ldots x_n', 0}\]
+    \[\ket{x_0', x_1', \ldots x_n', 1} \rightarrow \ket{x_0', x_1', \ldots x_n', 1 \otimes f(\vec{x'})} = \ket{x_0', x_1', \ldots x_n', 1}\]
+    dla argumentów $\vec{x'}$, że $f(\vec{x'}) = 0$.\\
+    Analogicznie
+    \[\ket{x_0'', x_1'', \ldots x_n'', 0} \rightarrow \ket{x_0'', x_1'', \ldots x_n'', f(\vec{x''})} = \ket{x_0'', x_1'', \ldots x_n'', 1}\]
+    \[\ket{x_0'', x_1'', \ldots x_n'', 1} \rightarrow \ket{x_0'', x_1'', \ldots x_n'', 1 \otimes f(\vec{x''})} = \ket{x_0'', x_1'', \ldots x_n'', 0}\]
+    dla argumentów $\vec{x''}$, że $f(\vec{x''}) = 1$.\\
+    Wtedy widać, że
+    \[f_Q(f_Q(x_0, x_1, \ldots x_n, c)) = (x_0, x_1, \ldots x_n, c)\]
+    Zatem dla odpowiadającej powyższemu mapowaniu macierzy permutacji $M$ mamy, że $\forall x_0, x_1, \ldots x_n, \in \{0, 1\}$
+    \[MM\ket{x_0, x_1, \ldots x_n} = \ket{x_0, x_1, \ldots x_n}\]
+    Stąd
+    \[MM = I\]
+\end{proof}
+Stąd widać, że każda funkcję boolowską można zamienić na bramkę kwantową z użyciem maksymalnie jednego dodatkowego kubitu. Chociaż jest to wynik ważny to nie bardzo użyteczny z praktycznego punktu widzenia, jeżeli nie portafimy rozbić tej bramki na serię bardziej uniwersalnych bramek, tak by móc symulować każdą funkcję boolowska za pomocą niewielkiego zestawu bramek kwantowych.
+\section{Postać ESOP}
+W rozdziale \ref{rozdzial0a} omówiona jest sumacyjna postać kanoniczna fukcji boolowskiej. Funkcja w tej postaci jest wyrażona jako suma produktów (termów). Analogiczną postacią jest postać ESOP czyli xor termów.
+\begin{theorem}
+    Każdą funkcję boolowską można zapisać w postaci ESOP.
+\end{theorem}
+\begin{proof}
+    Weżmy funkcję boolowską $f: \{0, 1\}^n \rightarrow \{0, 1\}$ zapisaną w postaci sumy mintermów.
+    \[f(a_0, a_1, \ldots a_n) = m_{k_0} + m_{k_1} + \ldots + m_{k_l}\]
+    gdzie $m_i$ oznacza minterm, a $k_0, k_1, k_l \in \{0, 1, \ldots n\}$ oznaczają indeksy mintermów należących do funkcji f.\\
+    Zauważmy następującą tożsamość
+    \[a + b = a \otimes b \otimes ab\]
+    Wtedy, ponieważ $\forall i,j$
+    \[m_i \otimes m_j = 0\]
+    funkcję $f$ można zapisać
+    \[f(a_0, a_1, \ldots a_n) = m_{k_0} \otimes m_{k_1} \otimes \ldots \otimes m_{k_l}\]
+\end{proof}
+\section{Tworzenie układu kwantowego z postaci ESOP}
+\begin{theorem}
+    Każdą funkcję boolowską $f: \{0, 1\}^n \rightarrow \{0,1\}$ można obliczyć za pomocą układu o rejestrze z $n+1$ kubitami składającej się z maksymalnie $2^{n-1}$ uogólnionych bramek Toffoliego oraz $2^n*n + 1$ bramek $NOT$.
+\end{theorem}
+\begin{proof}
+    Weźmy funkcję $f$ w postaci ESOP
+    \[f(a_0, a_1, \ldots a_n) = m_{k_0} \otimes m_{k_1} \otimes \ldots \otimes m_{k_l}\]
+    Wtedy każdy minterm można obliczyć za pomocą bramki Toffoliego oraz maksymalnie $2*n$ $NOT$.\\
+    Mając na ostatniej linii wynik operacji xor pierwszych $i < l$ minterów należacych do funkcji $f$
+    \[f_i = m_{k_0} \otimes m_{k_1} \otimes \ldots \otimes m_{k_i}\]
+    Można 'rozszerzyć wynik' o kolejny minterm w następujący sposób, że dla przykładowego mintermu $m_{i+1} = x_0x_1\overline{x_2}\overline{x_3}x_4$ tworzymy następujący układ kwantowy
+    \columnratio{0.45, 0.1, 0.45}
+    \begin{paracol}{3}
+        \vspace*{\fill}
+    \[
+        \Qcircuit @C=1.5em @R=1.5em {
+            \lstick{\ket{x_0}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_0}} \qw \\
+            \lstick{\ket{x_1}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_1}} \qw \\
+            \lstick{\ket{x_2}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_2}} \qw \\
+            \lstick{\ket{x_3}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_3}} \qw \\
+            \lstick{\ket{x_4}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_4}} \qw \\
+            \lstick{\ket{f_i}} & \qw & \gate{m_i} & \qw & \rstick{\ket{f_i \otimes m_{i+1}}} \qw
+        }
+    \]
+    \vspace*{\fill}
+    \switchcolumn
+    \vspace*{\fill}
+    \begin{center}
+        =
+    \end{center}
+    \vspace*{\fill}
+    \switchcolumn
+    \vspace*{\fill}
+    \[
+        \Qcircuit @C=1.5em @R=1.5em {
+            \lstick{\ket{x_0}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_0}} \qw \\
+            \lstick{\ket{x_1}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_1}} \qw \\
+            \lstick{\ket{x_2}} & \targ & \ctrl{1} & \targ & \rstick{\ket{x_2}} \qw \\
+            \lstick{\ket{x_3}} & \targ & \ctrl{1} & \targ & \rstick{\ket{x_3}} \qw \\
+            \lstick{\ket{x_4}} & \qw & \ctrl{1} & \qw & \rstick{\ket{x_4}} \qw \\
+            \lstick{\ket{f_i}} & \qw & \targ & \qw & \rstick{\ket{f_i \otimes m_{i+1}}} \qw
+        }
+    \]
+    \vspace*{\fill}
+    \end{paracol}
+    Wtedy można skonstruować następujący układ kwantowy:
+    \begin{center}
+        \[
+            \Qcircuit @C=1.5em @R=1.5em {
+                \lstick{\ket{x_0}} & \ctrl{1} & \ctrl{1} & \ldots & \ctrl{1} & \rstick{\ket{x_0}} \qw \\
+                \lstick{\ket{x_1}} & \ctrl{1} & \ctrl{1} & \ldots & \ctrl{1} & \rstick{\ket{x_1}} \qw \\
+                \lstick{\vdots} & \vdots & \vdots & \ddots & & \vdots & \vdots & \vdots \\
+                \lstick{\ket{x_n}} & \ctrl{1} & \ctrl{1} & \ldots & \ctrl{1} & \rstick{\ket{x_n}} \qw \\
+                \lstick{\ket{0}} & \gate{m_{k_0}} & \gate{m_{k_1}} & \ldots & \gate{m_{k_l}} & \rstick{\ket{((\ldots((0 \otimes m_{k_0}) \otimes m_{k_1}) \ldots )\otimes m_{k_l})}} \qw
+            }
+        \]
+    \end{center}
+\end{proof}
+\subsection{Algorytm}
+W celu optymalizacji liczby wykorzystanych bramek \texttt{not} zapisania funkcji za pomocą bramek kwantowych algorytm przetrzymuje aktualny stan zmiennych. To znaczy czy kubit odpowiadający danej zmiennej przechowuje jej wartość czy negację tej wartości. Wykorzystuje do tego zbiór, który zawiera zmienne, których negacja jest aktualnie przechowywana w rejestrze.\\
+\begin{pseudokod}[H]
+    \SetArgSty{normalfont}
+    \KwIn{Zbiór termów funckcji w postaci ESOP $E$, index wyjścia $o$}
+    \KwOut{Lista bramek kwantowych $G$}
+    $negPol \leftarrow$ pusta lista\\
+    $G \leftarrow$ pusta lista\\
+    \ForEach{$t \in E$}{
+        \tcc{v to para index oraz informacja o polaryzacji }
+        \ForEach{$v \in t$} { 
+            \If {$v$ postaci $\overline{x}$, gdzie x to zmienna}{
+                \If { $v.id \notin negPol$} {
+                    do $G$ dodaj \texttt{not}($v.id$)\\
+                    do $negPol$ dodaj $v.id$
+                }
+            } \Else {
+                \If { $v.id \in negPol$} {
+                    do $G$ dodaj \texttt{not}($v.id$)\\
+                    z $negPol$ usuń $v.id$
+                }
+            }
+        }
+        do $G$ dodaj \texttt{tfl}(id elementów z $t$)($o$)
+    }
+    \tcc{przywrócenie stanu początkowego}
+    \ForEach{$i \in negPol$}{ 
+        do $G$ dodaj \texttt{not}(i)
+    }
+    \caption{Konwersja postaci ESOP to listy bramek kwantowych}\label{alg:esop}
+\end{pseudokod}
+\section{Rozwinięcie Shannona}
+Ponieważ celem jest translacja układów kwantowych na układy kwantowe to funkcje boolowskie na wejściu zostają zdefiniowane przez klasyczne bramki logiczne, czyli za pomocą operacji $AND$, $NOT$, $OR$ oraz $XOR$. Tak zdefiniowane funkcje chcemy zmienić na postać ESOP. Najprostszym podejściem mogłoby być wyliczenie funkcji f dla każdego możliwego wartościowania argumentów, otrzymując tym samym zbiór mintermów należacych do funkcji. Czasami jednak to podejście może nie być najbardziej optymalne.
+\par Weźmy następująco zdefiniowaną funkcję
+\[f(\vec{x}) = and(x_0, h(\vec{x}))\]
+gdzie $\vec{x}$ jest wektorem długości $n \in \mathbb{N}$ oraz $n >> 1$, a $h$ jest 'skomplikowaną' funkcją boolowską.\\
+Wtedy połowa mintermów, gdzie $x_0 = 0$ będzie dawało fałsz i nie warto ich liczyć. Lepszą alternatywą może być skorzysanie z rozwinięć funkcji logicznej.
+\begin{definition}
+    Rozwinięcie Shannona dla funkcji boolowskiej $f$ względem zmiennej $x_i$ denifiuje się następująco
+    \[f(x_0, x_1, \ldots x_n) = x_i*f_{x_i} \otimes \overline{x_i}*f_{\overline{x_i}}\]
+    gdzie 
+    \[f_{x_i} = f(x_i = 1)\]
+    \[f_{\overline{x_i}} = f(x_i = 0)\]
+    To znaczy, $f_{x_i}$ jest funkcją powstałą przez podstawienie za $x_i$ $1$.
+\end{definition}
+\subsection{Algorytm}
+\par Korzystając z rozwinięć Shannona budujemy drzewo w następujący sposób:
+\begin{enumerate}
+    \item Podstaw pod korzeń funkcję $f$. Niech $f_{curr} := f$.
+    \item Dla funkcji $f_{curr}$ jeśli nie jest funkcją stała to $a$ := dowolny z argumentów wejściowych funkcji $f_{curr}$ i podstaw jako prawego syna $f_{a}$, a jako lewego $f_{\overline{a}}$.
+    \item Wykonaj 2. dla synów $f_{curr}$.
+\end{enumerate}
+Wynikiem tego algorytmu jest następująco wyglądające drzewo:
+\begin{center}
+    \Tree[.$f$ 
+        [.$f_{x_0}$ 
+            [.$f_{x_0, x_1}$ [.{\vdots} ] [.{\vdots} ]] 
+            [.$f_{x_0, \overline{x_1}}$ [.{\vdots} ] [.{\vdots} ]]
+        ] 
+        [.$f_{\overline{x_0}}$ 
+            [.$f_{\overline{x_0}, x_1}$ [.{\vdots} ] [.{\vdots} ]]
+            [.$f_{\overline{x_0}, \overline{x_1}}$ [.{\vdots} ] [.{\vdots} ]]
+        ]
+    ]   
+\end{center}
+Na podstawie tak zbudowanego drzewa można łatwo znaleźć postać ESOP funkcji f. Każdej funkcji $f_l$ będącej liściem, zatem funkcją stałą odpowiada term, na przykład $f_{x_0, \overline{x_1}, x_2}$ odpowiada term $x_0\overline{x_1}x_2$. Jeżeli liść jest równy 1 to dany term należy do funkcji.
+\subsubsection{Przykład} 
+Dla przykładowej funkcji $f(a,b,c) = a \land (b \lor \neg c)$ algorytm stworzy następujące drzewo:
+\begin{center}
+    \Tree[.$f$ 
+        [.{$f_{a} = b \lor \neg c$} 
+            [.{$f_{a, b} = 1$} ] 
+            [.{$f_{a, \overline{b}} = \neg c$}
+                [.{$f_{a, \overline{b}, c} = 0$} ]
+                [.{$f_{a, \overline{b}, \overline{c}} = 1$} ]
+            ] 
+        ] 
+        [.{$f_{\overline{a}} = 0$} ]
+    ]   
+\end{center}
+Stąd 
+\[f(a, b, c) = ab \otimes a\overline{b}\overline{c}\]

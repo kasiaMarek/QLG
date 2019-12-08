@@ -11,13 +11,13 @@ class InputOutputParser(inFile: Option[String] = Option.empty, outFile: Option[S
   def parse(): Unit = {
     try {
       val parsed: ParseResult[List[Expression]] = parseAll(program, reader)
-      println(parsed)
       val p = ParseCQLL.parseToCircuitExec(parsed.get)
       writer.write(p.toString())
       writer.flush()
-      writer.close()
     } catch {
       case e : RuntimeException => e.printStackTrace()
+    } finally {
+      writer.close()
     }
   }
 
