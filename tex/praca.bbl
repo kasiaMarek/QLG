@@ -1,4 +1,10 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{sep-qm-decoherence}
+G.~Bacciagaluppi.
+\newblock The role of decoherence in quantum mechanics.
+\newblock E.~N. Zalta, redaktor, {\em The Stanford Encyclopedia of Philosophy}.
+  Metaphysics Research Lab, Stanford University, wydanie fall 2016, 2016.
 
 \bibitem{ESOPtoTFL}
 K.~Fazel, M.~Thornton, J.~Rice.
@@ -31,14 +37,25 @@ M.~A. Nielsen,  I.~L. Chuang.
   Edition}.
 \newblock Cambridge University Press, 2010.
 
+\bibitem{Quantum_book}
+M.~Perkowski,  S.~Hossain.
+\newblock {\em Quantum Robotics, rodział 6}.
+\newblock wydanie August 7, 2010.
+
+\bibitem{Saeedi_2013}
+M.~Saeedi,  M.~Pedram.
+\newblock Linear-depth quantum circuits for n-qubit toffoli gates with no
+  ancilla.
+\newblock {\em Physical Review A}, 87(6), Jun 2013.
+
 \bibitem{Exorcism2}
 N.~Song,  M.~Perkowski.
 \newblock Exorcism-mv-2: Minimization of exclusive sum of products expressions
   for multiple-valued input incompletely specified functions.
 \newblock strony 132--137, 01 1993.
 
-\bibitem{VarReordWaveCasc}
+\bibitem{Voudouris_1variablereordering}
 D.~Voudouris, M.~Sampson, G.~Papakonstantinou.
-\newblock Variable reordering for reversible wave cascades.
+\newblock 1variable reordering for reversible wave cascades.
 
 \end{thebibliography}

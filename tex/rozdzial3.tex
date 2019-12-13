@@ -3,7 +3,17 @@
 \label{rozdzial3}
 
 \section{Opis technologii}
-Do napisania programu został wykorzystany język Scala w wersji 2.12.8. Do operacji na macierzach została wykorzystana bibiolteka Breeze \footnote{\url{https://github.com/scalanlp/breeze}}. Do napisania parsera została wykorzystana natywna biblioteka Scali scala-parser-combinators.
+Do napisania programu został wykorzystany język Scala w wersji 2.12.8. Do operacji na macierzach została wykorzystana bibiolteka Breeze \footnote{\url{https://github.com/scalanlp/breeze}}. Do napisania parsera została wykorzystana natywna biblioteka Scali, scala-parser-combinators.
 \footnote{\url{https://github.com/scala/scala-parser-combinators}}.
-\section{Instrukcja obługi}
-Warunkiem wstępnym do skorzystania z programu jest posiadanie zainstalowane Java JDK przynajmniej w wersji 8.
+\section{Instrukcja obsługi}
+Warunkiem wstępnym do skorzystania z programu jest posiadanie zainstalowanego Java JDK w wersji 8 lub wyższej. Program przyjmuje na wejściu jeden lub dwa argumenty. Pierwszym jest ścieżka do pliku zawierającego instrukcje napisane przy użyciu języka opisanego w rozdziale \ref{rozdzial2}. Drugim argumentem jest ścieżka do pliku, do którego ma zostać zapisane rozwiązanie. W przypadku bramku drugiego argumentu rozwiązanie zostanie wypisane bezpośrednio na konsolę.
+\section{Język wyjścia}
+\begin{verbatim}
+a  <1>  -H- --- -●- -x- -○- -x- <0>  0.0
+b  <0>  --- --- --- --- --- --- <0>  0.0
+c  <0>  --- --- -●- -●- --- -x- <1>  0.5
+d  <1>  --- -H- -○- -x- --- --- <0>  0.5
+\end{verbatim}
+W pierwszej kolumnie widać nazwy zmiennych, które odpowiadają kubitom. Następna kolumna zawiera wartości początkowe. 
+\par Dalej jest widoczny układ kwantowy. '\texttt{H}' to bramka Hadamarda, bramka Toffoliego oznaczona jest przez '○' dla bitu wejściowego i '●' dla bitów sterujących, w szeczólności w piątej kolumnie powyższego układu widać bramkę NOT. Bramka Fredkina analogicznie wykorzystuje oznaczenie '●' dla bitów strerujących oraz, tak samo jak bramka SWAP, '\texttt{x}' dla bitów wejściowych.
+\par Po schemacie układu kwantowego są wartości wynikowe dla każdego z kubitów, czyli stany kubitów po zmierzeniu ich wartości oraz na końcu prawdobodobieństwo zmierzenia stanu $\ket{1}$ dla każdego z kubitów w rejestrze.

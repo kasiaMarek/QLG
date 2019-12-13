@@ -1,5 +1,14 @@
 \chapter{Podsumowanie}
 \thispagestyle{chapterBeginStyle}
-
-
+W pracy udało się spełnić wszystkie pierwotne wymagania. W jej wyniku został stworzony program, który pozwala na zamodelowanie na wejściu układu logicznego i tworzy odpowiadający mu układ kwantowy. Program symuluje również działanie układu kwantowego dla pewnego podzbioru bramek kwantowych.
+\section{Minimalizacja liczby kubitów pomocniczych}
+Głównym zainteresowaniem optymalizacyjnym w tej pracy było generowanie układów kwantowych w sposób, który minimalizuje używane kubity pomocnicze. Program w tym celu wykorzystuje algorytm oparty o uzykanie postaci ESOP dla funkcji boolowskich, a następnie zamianę tej postaci na ciąg bramek z rodziny Toffoliego oraz bramek $NOT$. W wyniku zastosowania tej metody wykorzystywany jest jedynie jeden kubit pomocniczy dla każdej wyjściowej funkcji boolowskiej. Na wyjściu ten kubit przechowuje wartość tej funkcji.
+\subsection{Wnioski i uwagi}
+Podczas przeprowadzania obliczeń kwantowych bardzo istotnym czynnikiem jest czas działania. Zjawisko kwantowej dekoheracji powoduje, że czym dłużej obliczenia trwają tym mniej dokładne zwracają wyniki.
+\subsubsection{Optymalizacja postaci ESOP}
+Zwracana przez kolejne rozwinięcia SHannona postać ESOP często nie jest najbardziej optymalną. Istnieją heurystyki, które służą optymalizacji postaci ESOP funkcji boolowskich (np. Exorcism-MV-2). Głównym celem tych optymalizacji jest minimalizacja liczby termów wykorzystywanych do zapisu funkcji.
+\subsubsection{Rodzina bramek Toffoliego}
+Z każdą bramką kwantową związany jest pewnien koszt. Koszt ten jest zależny między innym od wielkośći bramki. Układy kwantowe pozwalają z reguły na wykorzystywanie tylko niewielkiego zbióru bramek kwantowych ograniczając się to tych, które operują na maksymalnie dwóch kubitach. W wyniku tego wielokubitowe bramki Toffoliego muszą zostać rozbite do ciągu mniejszych bramek. Możliwe jest rozbicie n-kubitowej bramki Toffoliego na maksymalnie dwu-kubitowe \todo{źródło} nie dodając bitów pomocniczych. Prowadzi to jednak do znacznego wzrostu iczby wykorzystywanych bramek.
+\subsubsection{Kubity pomocnicze}
+Największe istniejące komputery kwantowe nie przekraczają rozmiaru 53 kubitów, zatem łatwo widać, że kubity są cennym zasobem podczas obliczeń i warto minimalizować ich użycie. Żeby jednak komputery kwantowe mogły pracować i wykonywać realne obliczenia liczba kubitów musi znacznie wzrosnąć. Stan pierwotny kubitów pomocniczych, które przechowują niestotne wyniki, może zostać przywrócony dzięki odwacalności obliczeń kwantowych. Zatem te same kubity mogą być używane wielokrotnie.
 

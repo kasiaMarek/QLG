@@ -2,6 +2,23 @@
 \thispagestyle{chapterBeginStyle}
 \label{rozdzial2}
 
+\section{Wymagania}
+Celem tej pracy jest stworzenie programu, który przyjmuje opis obliczeń (używając predefiniowanego języka) dla układu kwantowego. Natępnie tworzy układ kwantowy odpowidaj tym obliczeniom i symuluje jego działanie.
+\subsection{Założenia dotyczące opisu wejściowego}
+Opis wejściowy (język wejściowy) powinien pozwalać na niżej opisane działania.
+\begin{enumerate}
+    \item Zefiniowanie zmiennej oraz nadanie jej wartości początkowej (0 lub 1).
+    \item Zdefiniowanie dowolnej funkcji boolowskiej na wcześniej zdefiniowanych zmiennych.
+    \item Wprowadzenie zmiennej w stan superpozycji, taki, że prawdopodobieństwo otrzymania 0 w wyniku mierzenia wynosi $\frac{1}{2}$.
+\end{enumerate}
+\subsection{Założenia dotyczące zwracanego wyniku}
+Program powinien zwrócić
+\begin{enumerate}
+    \item Układ kwantowy w postaci stanu początkowego rejestru oraz serii bramek.
+    \item Wynik symulacji.
+\end{enumerate}
+\subsection{Wymagania dodatkowe}
+Program powinien starać się optymalizować liczbę używanych kubitów pomocniczych, wymaganych przy przełożeniu funkcji nieodwracalnych na bramki kwantowe.
 \section{Architektura Systemu}
 Na rysunku \ref{fig:potok} widać diagram potoku systemu. Program na wejściu przyjmuje opis obliczeń wyspecyfikowany przy użyciu z góry zdefiniowanego języka wejściowego. Opis ten jest parsowany na obiekty rozumiane przez język programowania, przy okazji jest sprawdzana poprawność leksykalna oraz semantyczna zdefiniowanych w opisie wejściowym instrukcji. Wszystkie instrukcje są tłumaczone na akcje związane z układem kwantowym, czyli powiększanie wielkość rejestru kubitów (deklaracja) lub operowanie na rejestrze za pomocą bramek kwantowych. Następnie symulowane jest działanie tak powstałego układu kwantowego. Program zwraca schemat utworzonego układu kwantowego oraz wynik symulacji.
 \begin{figure}[H]
@@ -58,11 +75,11 @@ Funkcję boolowską definiuje się poprzez bramki logiczne \texttt{and, or, xor,
 \end{center}
 Bramki kwantowe operują na zadeklarownych zmiennych mutując ich stan. Nie zwracają żadnej wartości.
 \par Dla bramek wielokubitowych, które przyjmują zmienne sterujące oraz wejściowe, zmienne sterujące oznaczane są poprzez poprzedzający '\texttt{:}'. Na przykład instrukacja \texttt{tfl(:a, b, :c)} oznacza bramkę Toffoliego na zmiennej wejściowej \texttt{b} ze zmiennymi strującymi \texttt{a}, \texttt{c}.\\
-\par Powyższy język umożliwia na konstrukcje opisane w rodziale \ref{rozdzial1}.
+\par Język ten spełnia wcześniej opisane wymagania.
 \section{Translator}
 Opis zagadnienia translacji został wydzielony do rodziału \ref{rozdzial2a}.
 \section{Układ kwantowy z rejestrem}
-Przez układ kwantowy z rejestrem rozumiemy tutaj parę $(\q, G)$, gdzie $\q$ to stan wejściowy rejestru kubitów, rozumiany jako wektor, a $G$ to ciąg kolejno nakładanych na rejestr bramek. Każda z bramek, na których użycie pozwala omawiany proagram, należy do jednego z poniższych typów:
+Przez układ kwantowy z rejestrem rozumiemy tutaj parę $(\q, G)$, gdzie $\q$ to stan wejściowy rejestru kubitów, rozumiany jako wektor, a $G$ to ciąg kolejno nakładanych na rejestr bramek. Każda z bramek, na których użycie pozwala omawiany program, należy do jednego z poniższych typów:
 \begin{itemize}
     \item[\texttt{hdm}] Bramka Hadamarda
     \item[\texttt{tfl}] Uogólniona bramka Toffoliego
@@ -135,44 +152,6 @@ Jeżeli jednak bity sterujące i/lub bity wejściowe nie sąsiadują to można w
     \vspace*{\fill}
 \end{paracol}
 Zatem można rozpisać $\texttt{tfl([0,3])(2)} = \texttt{swp(0,1)} * \texttt{swp(2,3)} * \texttt{tfl([0,3])(2)} * \texttt{swp(0,1)} * \texttt{swp(2,3)}$. Wtedy jeśli każda z wykorzystwanych bramek zostanie rozszerzona, tak by operowała na pięciu kubitach, zgodnie ze strategią opisaną z rodziale \ref{oneqgate}, to zostanie wygenerowana macierz wykonująca operację \texttt{tfl([0,3])(2)} na rejestrze piecio-kubitowym.
-% Wtedy otrzymujemy poniższą macierz (zera zastąpione pustymi miejscami dla czytelności).
-% \setcounter{MaxMatrixCols}{35}
-% \[
-%     \begin{bmatrix}
-%         1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1\\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &   &  \\
-%           &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & 1 &   &   &   &  \\
-%     \end{bmatrix} 
-% \]
 \subsubsection{Uogólniona bramka Toffoliego}
 Uogólniona bramka Toffoliego wykonuje operację negacji na bicie wejściowym gdy wszystkie bity strerujące są jedynkami.
 \par Opisana w rodziale \ref{multiqg} bramka \texttt{tfl([0,3])(2)} operująca na pięcio-kubitowym rejestrze mapuje czyste stany kwantowe następująco:
@@ -191,21 +170,21 @@ gdzie numaracja zaczyna się od zera.\\
     \SetArgSty{normalfont}
     \KwIn{Liczba kubitów w rejestrze $n$, zbiór indeksów bitów sterujących $C$, indeks bitu wejściowego $i$}
     \KwOut{Macierz bramki Toffoliego M}
-    $M \leftarrow$ macierz wymiarów $2^n \times 2^n$ wypełniona 0\\
+    $M \leftarrow$ macierz wymiarów $2^n \times 2^n$ wypełniona 0\;
     \For{$j \leftarrow 0$ \KwTo $2^n$}{
-        $isId \leftarrow$ \texttt{false}\\
+        $isId \leftarrow$ \texttt{false}\;
         \ForEach{$c \in C$}{
             \tcc{bity w zapisie biranym numerujemy od najmiej znaczącego, indeksem 0}
             \If{$j$ ma 0 na ($n-c-1$)-tym bicie w zapisie binarnym}{
-                $isId \leftarrow$ \texttt{true}
+                $isId \leftarrow$ \texttt{true} \;
             }
         }
         \If{$idId$}{
             \tcc{przypadek gdy, wszystkie kubity sterujące są jedynkami}
-                wstaw 1 do macierzy M na miejscu ($j$, $j$ bitwise\_not na ($n-i$)-tym bicie) \tcc{(kolumna, wiersz)}
+                wstaw 1 do macierzy M na miejscu ($j$, $j$ bitwise\_not na ($n-i$)-tym bicie) \tcp*{(kolumna, wiersz)}
         }
         \Else {
-                wstaw 1 do macierzy M na miejscu ($j$, $j$)
+                wstaw 1 do macierzy M na miejscu ($j$, $j$) \;
         }
     }
     \caption{Generacja macierzy bramki Toffoliego z defninicji bramki}\label{alg:toffoliGateGen}
