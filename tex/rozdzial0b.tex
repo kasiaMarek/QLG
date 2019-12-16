@@ -2,7 +2,7 @@
 \thispagestyle{chapterBeginStyle}
 \label{rozdzial0b}
 \section{Stan kwantowy kubitu}
-Podstawowym nośnikiem informacji w obliczeniach kwantowych, analogicznym do klasycznego bitu, jest bit kwantowy nazywany kubitem. Stan $\ket{0}$ odpowiada klasycznemu 0, a $\ket{1}$ klasycznej 1. Stany $\ket{0}$ i $\ket{1}$ to stany czyste. Kubit może znajdować się w superpozycji tych stanów, w stanie mieszanym. 
+Podstawowym nośnikiem informacji w obliczeniach kwantowych, analogicznym do klasycznego bitu, jest bit kwantowy, czyli kubit. Stan $\ket{0}$ odpowiada klasycznemu 0, a $\ket{1}$ klasycznej 1. Stany $\ket{0}$ i $\ket{1}$ to stany czyste. Kubit może znajdować się w superpozycji tych stanów, w stanie mieszanym. 
 \par Mierząc stan kubitu można odkryć jedynie, że jest on $\ket{0}$ lub $\ket{1}$. Stan kubitu po jego zmierzeniu, jeśli był mieszany, ulegnie zmianie i będzie zgodny ze stanem zmierzonym.
 \par Stan kubitu można zapisać jako
 \[\q = \alpha_0\ket{0} + \alpha_1\ket{1}\]
@@ -18,7 +18,7 @@ Wektory
         1 \\
         0 \\
     \end{bmatrix}
-\], 
+\] 
 \[
     \ket{1}
     =
@@ -29,6 +29,11 @@ Wektory
 \] tworzą bazę ortonormalną w 2-wymiarowej przestrzeni Hilberta.
 \par Zatem stan kubitu odpowiada znormalizowanymu wektorowi w 2-wymiarowej przestrzeni Hilberta.
 \section{Stan kwantowy rejestru kubitów}
+\begin{definition}
+    Przez zapis stanu rejestru n-kubitów $\ket{j}$, dla pewnego $j \in \mathbb{N}$, rozumiemy 
+    \[\ket{j_0} \otimes \ket{j_1} \otimes \ldots \otimes \ket{j_n} = \ket{j_0, j_1, \ldots j_n}\]
+    gdzie $j_0, j_1, \ldots j_n$ to zapis binarny liczby j, a przez $\otimes$ rozumiemy produkt tensorowy.
+\end{definition}
 Stan n-kubitowy rejestru kwantowego to
 \[
     \ket{\psi} 
@@ -42,28 +47,29 @@ Stan n-kubitowy rejestru kwantowego to
         \alpha_{2^n-1}
     \end{bmatrix}
 \]
-Gdzie ($\forall i \in \{0, 1, \ldots, 2^{n} - 1 \}$)($\alpha_i \in \CC$) oraz
+gdzie ($\forall i \in \{0, 1, \ldots, 2^{n} - 1 \}$)($\alpha_i \in \CC$) oraz
 \[\sum^{2^{n} - 1}_{i = 0} \left|\alpha_i\right|^{2} = 1\]
-\subsection{Stan rejestu kubitów a stanów kubitów}
-Mając rejestr kwantowy $\ket{\psi}$ , którego składowe stany kubitów to $\ket{q_0}$ i $\ket{q_1}$, gdzie
+\subsection{Stan rejestru kubitów a stanów kubitów}
+Weźmy stan rejestru kwantowowego $\ket{\psi}$ , którego stany kubitów składowych to $\ket{q_0}$ i $\ket{q_1}$, gdzie
 \[\ket{q_0} = \alpha_{00}\ket{0} + \alpha_{01}\ket{1}\]
 \[\ket{q_1} = \alpha_{10}\ket{0} + \alpha_{11}\ket{1}\]
-Możemy zapisać stan rejestru jako
+Możemy zapisać stan tego rejestru jako
 \[\ket{\psi} = \ket{q_0} \otimes \ket{q_1} = \alpha_{00}\alpha_{10}\ket{00} + \alpha_{00}\alpha_{11}\ket{01} + \alpha_{01}\alpha_{10}\ket{10} + \alpha_{01}\alpha_{11}\ket{11}\]
-gdzie przez $\otimes$ rozumiemy produkt tensorowy.
 \par Analogicznie dla rejestru n-kubitowego $\ket{\psi}$, którego stany kubitów to $\ket{q_0}, \ket{q_1}, \ldots \ket{q_n}$
 \[\ket{\psi} = \ket{q_0} \otimes \ket{q_1} \otimes \ldots \otimes \ket{q_n}\]
 \subsection{Splątanie kwantowe}
-N-kubitowy rejestr kwantowy może być w stanie $\ket{\psi}$ takim, że nie istnieją takie stany $\ket{q_0}, \ket{q_1}, \ldots \ket{q_n}$, że
+n-kubitowy rejestr kwantowy może być w stanie $\ket{\psi}$, którego nie da się wyrazić za pomocą stanów kubitów składowych, to znaczy takim, że nie istnieją takie stany $\ket{q_0}, \ket{q_1}, \ldots \ket{q_n}$, że
 \[\ket{\psi} = \ket{q_0} \otimes \ket{q_1} \otimes \ldots \otimes \ket{q_n}\]
 Zjawisko to nazywane jest splątaniem kwantowym.
 \par Przykładem takiego stanu jest stan Bella
 \[\ket{\psi} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11}\]
+Wtedy nie istnieją takie $\alpha_{00}, \alpha_{01}, \alpha_{10}, \alpha_{11} \in \CC$ , że
+\[\ket{\psi} = (\alpha_{00}\ket{0} + \alpha_{01}\ket{1}) \otimes (\alpha_{10}\ket{0} + \alpha_{11}\ket{1})\]
 \section{Bramka kwantowa}
-Przez bramkę kwantową rozumiemy operację (o dodatkowych ograniczeniach) wykonywaną na rejestrze kubitów, której wynikiem jest nowy stan rejestru kubitów. Ich działanie jest analogiczne do bramek w układach logicznych.
+Przez bramkę kwantową rozumiemy operację (o dodatkowych ograniczeniach) mutującą stan rejestru kubitów. Bramki kwantowe w układach kwantowych spłeniają analogiczną rolę do bramek logicznych w układach logicznych.
 \par Każda poprawna bramka kwantowa może zostać zapisana jako macierz unitarna $M$, to znaczy taka, że $M^{\dagger}M = I$ oraz $MM^{\dagger} = I$, gdzie przez $\dagger$ rozumiemy sprzężenie hermitowskie (złożenie operacji transpozycji i sprzężenia zespolonego). 
-N-kubitowa bramka kwantowa $M_n$ jest zatem macierzą unitarną o wymiarach $2^n \times 2^n$ i co więcej każda taka macierz jest poprawną bramką kwantową.
-\par N-kubitowa bramka kwantowa $M$ operuje na n-kubitowym rejestrze kwantowym $\q$ w następujący sposób:
+n-kubitowa bramka kwantowa $M_n$ jest zatem macierzą unitarną o wymiarach $2^n \times 2^n$ i co więcej każda taka macierz jest poprawną bramką kwantową.
+\par n-kubitowa bramka kwantowa $M$ operuje na n-kubitowym rejestrze kwantowym $\q$ w następujący sposób:
 \begin{align*}
     M\q = M\ket{a_0, a_1, \ldots a_{2^n-1}}
     &= M(a_0\ket{0} + a_0\ket{1} + \ldots + a_{2^n-1}\ket{2^n-1}) \\
@@ -85,7 +91,7 @@ analogicznie do logicznej bramki Not.
     \end{bmatrix}
 \]
 Macierz ta jest unitarna.\\
-Bramka Not operuje na kubicie $\q$ w natępujący sposób
+Bramka NOT operuje na kubicie $\q$ w natępujący sposób
 \[
     X\q 
     =
@@ -122,8 +128,8 @@ Inaczej jej działanie można zapisać w postaci
 \[
     CNOT\ket{a,b} = \ket{a,b \oplus a}
 \]
-Wtedy można patrzeć na nią jak na uogólnioną bramkę $XOR$.\\
-Bramce tej odpowiadają następująca macierz i zapis w układzie kwantowym:
+Wtedy można patrzeć na nią jak na uogólnioną bramkę Xor.\\
+Bramce tej odpowiadają następująca macierz i zapis w układzie kwantowym
 \begin{paracol}{2}
 \[
     CNOT
@@ -140,17 +146,17 @@ Bramce tej odpowiadają następująca macierz i zapis w układzie kwantowym:
 \[
     \Qcircuit @C=1.5em @R=1.5em {
         \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
-        \lstick{\ket{b}} & \targ & \rstick{\ket{b \otimes a}} \qw
+        \lstick{\ket{b}} & \targ & \rstick{\ket{b \oplus a}} \qw
     }
 \] 
 \vspace*{\fill}
 \end{paracol}
 \subsubsection{Bramka Toffoliego}
-Bramką analogiczną do bramki Feymana jest bramka Toffoliego, inaczej $CCNOT$. Nakłada NOT na ostatni kubit (bit wejściowy), jeśli dwa pozostałe (bity sterujące) są w stanie $\ket{11}$. Jej działanie można zapisać następująco:
+Bramką analogiczną do bramki Feymana jest bramka Toffoliego, inaczej $CCNOT$. Nakłada NOT na ostatni kubit (bit wejściowy), jeśli dwa pozostałe (bity sterujące) są w stanie $\ket{11}$. Jej działanie można zapisać następująco
 \[
     CCNOT\ket{a,b,c} = \ket{a,b,c \oplus ab}
 \]
-Macierz oraz zapis na układzie kwantowym dla tej bramki to:
+Macierz oraz zapis na układzie kwantowym dla tej bramki to
 \begin{paracol}{2}
     \[
         CCNOT
@@ -172,23 +178,23 @@ Macierz oraz zapis na układzie kwantowym dla tej bramki to:
         \Qcircuit @C=1.5em @R=1.5em {
             \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
             \lstick{\ket{b}} & \ctrl{1} & \rstick{\ket{b}} \qw \\
-            \lstick{\ket{c}} & \targ & \rstick{\ket{c \otimes ab}} \qw
+            \lstick{\ket{c}} & \targ & \rstick{\ket{c \oplus ab}} \qw
         }
     \]
     \vspace*{\fill}
 \end{paracol}
 \subsubsection{Uogólniona forma}
-Bramkę Toffoliego można uogólnić do bramki z n-bitami kontolującymi $C_nNOT$.
+Bramkę Toffoliego można uogólnić do bramki z n-bitami sterującymi $C_nNOT$.
 \[
-    C_nNOT\ket{a_0, a_1, \ldots, a_n} = C_nNOT\ket{a_0, a_1, \ldots, a_n \otimes a_0a_1\ldots a_{n-1}}
+    C_nNOT\ket{a_0, a_1, \ldots, a_n} = C_nNOT\ket{a_0, a_1, \ldots, a_n \oplus a_0a_1\ldots a_{n-1}}
 \]
-Wtedy dla $n = 2$ mamy bramkę Toffoliego, dla $n = 1$ bramkę Feymana, a dla $n = 0$ bramkę $NOT$.
+Wtedy dla $n = 2$ otrzymujemy bramkę Toffoliego, dla $n = 1$ bramkę Feymana, a dla $n = 0$ bramkę $NOT$.
 \subsection{Bramka SWAP}
 Bramka $SWAP$ operuje na dwóch kubitach zamieniając ich stany.
 \[
     SWAP\ket{a,b} = \ket{b,a}
 \]
-Macierz oraz zapis na układzie kwantowym dla tej bramki to:
+Macierz oraz zapis na układzie kwantowym dla tej bramki to
 \begin{paracol}{2}
     \[
         SWAP = 
@@ -204,17 +210,17 @@ Macierz oraz zapis na układzie kwantowym dla tej bramki to:
     \[
         \Qcircuit @C=1.5em @R=1.5em {
         \lstick{\ket{a}} & \qswap & \rstick{\ket{b}} \qw \\
-        \lstick{\ket{b}} & \qswap & \rstick{\ket{a}} \qw
+        \lstick{\ket{b}} & \qswap \qwx & \rstick{\ket{a}} \qw
         }
     \]
     \vspace*{\fill}
 \end{paracol}
 \subsection{Bramka Fredkina}
-3-kubitowa bramka Fredkina inaczej $CSWAP$ dokonuje permutacji ostatnich dwóch bitów, wtedy i tylko wtedy gdy bit sterujący jest w stanie $\ket{1}$. Jej działanie można zapisać w następujący sposób:
+3-kubitowa bramka Fredkina inaczej $CSWAP$ dokonuje transpozycji ostatnich dwóch bitów, wtedy i tylko wtedy gdy bit sterujący jest w stanie $\ket{1}$. Jej działanie można zapisać w następujący sposób
 \[
-    CSWAP\ket{c,s_1,s_2} = \ket{c, (\neg c) s_1 + c s_2, (\neg c)s_2 + c s_1}
+    CSWAP\ket{a,b,c} = \ket{a, (\neg a) b + ac, (\neg a)c + ab}
 \]
-Macierz oraz zapis układzie kwantowym dla tej bramki to:
+Macierz oraz zapis układzie kwantowym dla tej bramki to
 \begin{paracol}{2}
     \[
         CSWAP = 
@@ -241,13 +247,13 @@ Macierz oraz zapis układzie kwantowym dla tej bramki to:
     \vspace*{\fill}
 \end{paracol}
 \subsection{Bramka Hadamarda}
-Wszystkie wyżej opisane bramki można zaimplementować na klasycznych bitach. Najbardziej podstawowa bramka, która wpowadza kubit w stan superpozycji, to bramka Hadamarda. Dokonuje ona następującego mapowania:
+Wszystkie wyżej opisane bramki można zaimplementować na klasycznych bitach. Najczęściej spotykana bramka, która wpowadza kubit w stan superpozycji, to bramka Hadamarda. Dokonuje ona następującego mapowania:
 \[H\ket{0} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1} = \ket{+}\]
 \[H\ket{1} = \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1} = \ket{-}\]
 Zarówno w stanie $\ket{+}$ jak i w stanie $\ket{-}$
 \[P(\ket{0}) = P(\ket{1}) = \frac{1}{2}\]
 gdzie przez $P(\q)$ rozumiemy prawdopodobieństwo otrzymania $\q$ w wyniku pomiaru.
-\par Bramkę Hadamarda można zapisać jako następującą macierz
+\par Macierz oraz zapis układzie kwantowym dla tej bramki to
 \begin{paracol}{2}
     \[
         H
@@ -268,5 +274,5 @@ gdzie przez $P(\q)$ rozumiemy prawdopodobieństwo otrzymania $\q$ w wyniku pomia
 \end{paracol}
 \section{Układ kwantowy}
 \begin{definition}
-    Przez układ kwantowy rozumiemy ciąg bramek kwantowych, które są zdefiniowane jako operacje na $n$-bitowym rejetrze z nałożonym porządkiem ich wykonywania. Każda z bramek kwantowych wykonywana jest na podzbiorze kubitów z rejestru. Każdy układ kwantowy można wyrazić jako pojedynczą operację, która będącą złożeniem operacji składowych. Operacja ta, jako złożenie macierzy unitarnych, również będzie macierzą unitarną.
+    Przez układ kwantowy rozumiemy ciąg bramek kwantowych, które są zdefiniowane jako operacje na $n$-bitowym rejestrze z nałożonym porządkiem ich wykonywania. Każda z bramek kwantowych wykonywana jest na podzbiorze kubitów z rejestru. Każdy układ kwantowy można wyrazić jako pojedynczą operację, macierz unitarną, będącą złożeniem operacji składowych.
 \end{definition}

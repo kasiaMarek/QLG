@@ -405,17 +405,13 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/bbold/bbold5.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmbx12.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmri7.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmri7.tfm
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
 INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/rozdzial0b.tex
 INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/rozdzial0b.tex
+INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
+INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
+INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
+INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
 INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/pwr-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/pwr-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/pwr-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
-INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
 INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/pwr-logo.png
 INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/pwr-logo.png
 INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/wppt-logo.png
@@ -432,6 +428,7 @@ INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/systemDiag.png
 INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/lm/ot4lmtt.fd
 INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/lm/ot4lmtt.fd
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmtt10.tfm
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmtk10.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmr7.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmtt8.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/lm/rm-lmr5.tfm
@@ -501,8 +498,8 @@ INPUT /Users/kasia/Desktop/politechnika/praca_inzynierska/QLG/tex/praca.out
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/pl/plms.enc
-INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/pl/plmi.enc
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/pl/plsc.enc
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/pl/plmi.enc
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/pl/plrm.enc
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/pl/plme.enc
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rmsc.enc
@@ -518,6 +515,7 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr7.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr8.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr9.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/lm/lmri10.pfb
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/lm/lmtk10.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/pl/plex10.pfb

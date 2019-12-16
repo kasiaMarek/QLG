@@ -3,7 +3,7 @@
 \label{rozdzial0a}
 \section{Funkcja boolowska}
 \begin{definition}
-    Przez funkcję boolowską, w tej pracy, rozumiemy zupełną funkcję boolowską. Jest to funkcja
+    Przez funkcję boolowską w tej pracy rozumiemy zupełną funkcję boolowską. Jest to funkcja
     \[f:\{0,1\}^n \rightarrow \{0,1\}\]
     gdzie $n \in \mathbb{N}$. Wartość 1 jest utożsamiana z logiczną prawdą, a 0 z logicznym fałszem.
 \end{definition}
@@ -30,19 +30,8 @@ Poniższy zestaw funkcji boolowskich tworzy układ funkcjonalnie pełny.
 \begin{definition}
     Zestaw funkcji boolowskich tworzy układ funkcjonalnie pełny, gdy przy ich użyciu można wyrazić każdą funkcję boolowską.
 \end{definition}
-\begin{multicols}{2}
-\subsubsection{Id (identyczność)}
-\[f(a) = a\]
-\begin{center}
-    \begin{tabular}{| c | c |}
-        \hline
-        x & $f(x) = x$ \\ 
-        \hline
-        0 & 0 \\ 
-        1 & 1 \\ 
-        \hline 
-    \end{tabular}
-\end{center}
+\begin{paracol}{2}
+\vspace*{\fill}
 \subsubsection{Not (negacja)}
 \[f(a) = \neg a\]
 \[f(a) = \overline{a}\]
@@ -56,8 +45,27 @@ Poniższy zestaw funkcji boolowskich tworzy układ funkcjonalnie pełny.
         \hline 
     \end{tabular}
 \end{center}
-\end{multicols}
-\begin{multicols}{2}
+\vspace*{\fill}
+\switchcolumn
+\vspace*{\fill}
+\subsubsection{Xor (alternatywa wykluczająca)}
+\[f(a,b) = a \oplus b\]
+\begin{center}
+    \begin{tabular}{| c  c | c |}
+        \hline
+        x & y & $f(x,y) = x \oplus y$ \\ 
+        \hline
+        0 & 0 & 0 \\ 
+        0 & 1 & 1 \\ 
+        1 & 0 & 1 \\ 
+        1 & 1 & 0 \\ 
+        \hline 
+    \end{tabular}
+\end{center}
+\vspace*{\fill}
+\end{paracol}
+\begin{paracol}{2}
+\vspace*{\fill}
 \subsubsection{And (koniunkcja)}
 \[f(a,b) = a \land b\]
 \[f(a,b) = ab\]
@@ -73,6 +81,9 @@ Poniższy zestaw funkcji boolowskich tworzy układ funkcjonalnie pełny.
         \hline 
     \end{tabular}
 \end{center}
+\vspace*{\fill}
+\switchcolumn
+\vspace*{\fill}
 \subsubsection{Or (alternatywa)}
 \[f(a,b) = a \lor b\]
 \[f(a,b) = a + b\]
@@ -88,24 +99,7 @@ Poniższy zestaw funkcji boolowskich tworzy układ funkcjonalnie pełny.
         \hline 
     \end{tabular}
 \end{center}
-\end{multicols}
-\begin{paracol}{2}
-\subsubsection{Xor (alternatywa wykluczająca)}
-\[f(a,b) = a \otimes b\]
-\begin{center}
-    \begin{tabular}{| c  c | c |}
-        \hline
-        x & y & $f(x,y) = x \otimes y$ \\ 
-        \hline
-        0 & 0 & 0 \\ 
-        0 & 1 & 1 \\ 
-        1 & 0 & 1 \\ 
-        1 & 1 & 0 \\ 
-        \hline 
-    \end{tabular}
-\end{center}
-\switchcolumn
-\vfill{}
+\vspace*{\fill}
 \end{paracol}
 \subsection{Kanoniczna postać sumacyjna (SOP)}
 \begin{definition}
@@ -113,27 +107,28 @@ Literał definiuje się jako:
 $$
 x^e = \left\{ \begin{array}{ll}
 x & \textrm{gdy $ e = 1$}\\
-\overline{x} & \textrm{gdy $ e = 0 $}
+\overline{x} & \textrm{gdy $ e = 0 $} \\
+0 & \textrm{gdy $e = -$}
 \end{array} \right.
 $$
-gdzie $e \in \{0, 1\}$, a $x$ symbolem zmiennej.
+gdzie $e \in \{0, 1, -\}$, a '$x$' jest symbolem zmiennej.
 \end{definition}
 \begin{definition}
-    Term to produkt literałów (równoważny logicznej koniunkcji), taki, że każda zmienna występuje w nim maksymalnie raz.
+    Term to produkt (równoważny logicznej koniunkcji) literałów, taki, że każda zmienna występuje w nim maksymalnie raz.
 \end{definition}
 \begin{definition}
     Term, w którym każda zmienna występuje dokładnie raz, nazywamy mintermem.
 \end{definition}
 \begin{definition}
-    Kanoniczną postacią sumacyjną (SOP) nazywamy postać funkcji, w której zapisana jest ona jako suma termów (równoważna logicznej alternatywie).
+    Kanoniczną postacią sumacyjną (SOP) nazywamy postać funkcji, w której zapisana jest ona jako suma (równoważna logicznej alternatywie) termów.
 \end{definition}
 Każdą funkcję boolowską można zapisać w postaci sumy mintermów w następujący sposób
-\[f(a_0, a_1, \ldots a_n) = \sum_{i=0}^n b_i*m_i\]
+\[f(a_0, a_1, \ldots a_n) = \sum_{i=0}^{2^n} b_i*m_i\]
 gdzie $b_i \in \{0, 1\}$ jest wskaźnikiem (mówi czy dany minterm należy do funkcji f), a $m_i$ to minterm, taki że
 \[m_i = a_0^{j_0}a_1^{j_1} \ldots a_n^{j_n}\]
 gdzie ciąg $j_0, j_1, \ldots j_n$ to cyfry liczby $i$ zapisanej w postaci binarnej.
 \section{Układy logiczne}
-Układ logiczny $U_g$ pozwala na obliczanie funkcji $g: \{0,1\}^n \rightarrow \{0,1\}^k$, gdzie $n,k \in \mathbb{N}$. Zatem układ ten można zamodelować następująco:
+Układ logiczny $U_g$ oblicza funkcję $g: \{0,1\}^n \rightarrow \{0,1\}^k$, gdzie $n,k \in \mathbb{N}$. Układ $U_g$ można zamodelować następująco
 \begin{center}
     \begin{tabular}{ c | c | c }
         \cline{2-2}
@@ -150,6 +145,6 @@ Układ logiczny $U_g$ pozwala na obliczanie funkcji $g: \{0,1\}^n \rightarrow \{
         \cline{2-2}
     \end{tabular} 
 \end{center}
-gdzie ciągi $a_0, a_1, \ldots, a_n$ to bity wejściowe, a $b_0, b_1 \ldots, b_n$ to bity wyjściowe, że $\forall i$ $a_i, b_i \in \{0, 1\}$ oraz
-\[g(a_0, a_1, \ldots, a_n) = (f_0(a_0, a_1, \ldots, a_n), f_1(a_0, a_1, \ldots, a_n), \ldots f_k(a_0, a_1, \ldots, a_n)) =  (o_0, o_1, \ldots, o_k)\]
+gdzie  $\forall i$ $a_i, o_i \in \{0, 1\}$, ciąg $a_0, a_1, \ldots, a_n$ to bity wejściowe, a $o_0, o_1 \ldots, o_n$ to bity wyjściowe oraz
+\[g(a_0, a_1, \ldots, a_n) = (f_0(a_0, a_1, \ldots, a_n), f_1(a_0, a_1, \ldots, a_n), \ldots, f_k(a_0, a_1, \ldots, a_n)) =  (o_0, o_1, \ldots, o_k)\]
 gdzie $f_0, f_1, \ldots, f_k$ to funkcje boolowskie.

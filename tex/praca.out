@@ -8,7 +8,7 @@
 \BOOKMARK [1][-]{section.3.1}{Stan kwantowy kubitu}{chapter.3}% 8
 \BOOKMARK [2][-]{subsection.3.1.1}{Notacja Diraca}{section.3.1}% 9
 \BOOKMARK [1][-]{section.3.2}{Stan kwantowy rejestru kubit\363w}{chapter.3}% 10
-\BOOKMARK [2][-]{subsection.3.2.1}{Stan rejestu kubit\363w a stan\363w kubit\363w}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.1}{Stan rejestru kubit\363w a stan\363w kubit\363w}{section.3.2}% 11
 \BOOKMARK [2][-]{subsection.3.2.2}{Splatanie kwantowe}{section.3.2}% 12
 \BOOKMARK [1][-]{section.3.3}{Bramka kwantowa}{chapter.3}% 13
 \BOOKMARK [1][-]{section.3.4}{Wybrane bramki kwantowe}{chapter.3}% 14
@@ -23,8 +23,8 @@
 \BOOKMARK [2][-]{subsection.4.1.1}{Za\233ozenia dotyczace opisu wejsciowego}{section.4.1}% 23
 \BOOKMARK [2][-]{subsection.4.1.2}{Za\233ozenia dotyczace zwracanego wyniku}{section.4.1}% 24
 \BOOKMARK [2][-]{subsection.4.1.3}{Wymagania dodatkowe}{section.4.1}% 25
-\BOOKMARK [1][-]{section.4.2}{Architektura Systemu}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.3}{Jezyk wejsciowy i Parser}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.2}{Architektura systemu}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.3}{Jezyk wejsciowy i parser}{chapter.4}% 27
 \BOOKMARK [2][-]{subsection.4.3.1}{Gramatyka}{section.4.3}% 28
 \BOOKMARK [2][-]{subsection.4.3.2}{Analiza leksykalna}{section.4.3}% 29
 \BOOKMARK [2][-]{subsection.4.3.3}{Instrukcje i analiza semantyczna}{section.4.3}% 30
@@ -67,4 +67,7 @@
 \BOOKMARK [0][-]{chapter.8}{Podsumowanie}{}% 67
 \BOOKMARK [1][-]{section.8.1}{Minimalizacja liczby kubit\363w pomocniczych}{chapter.8}% 68
 \BOOKMARK [2][-]{subsection.8.1.1}{Wnioski i uwagi}{section.8.1}% 69
-\BOOKMARK [0][-]{chapter*.21}{Bibliografia}{}% 70
+\BOOKMARK [1][-]{section.8.2}{Dalszy rozw\363j}{chapter.8}% 70
+\BOOKMARK [2][-]{subsection.8.2.1}{Poszerzenie zbioru bramek kwantowych}{section.8.2}% 71
+\BOOKMARK [2][-]{subsection.8.2.2}{Dodanie nowych instrukcji}{section.8.2}% 72
+\BOOKMARK [0][-]{chapter*.19}{Bibliografia}{}% 73

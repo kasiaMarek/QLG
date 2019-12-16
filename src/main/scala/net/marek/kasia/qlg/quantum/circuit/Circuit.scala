@@ -5,7 +5,9 @@ import net.marek.kasia.qlg.quantum.qubits.Qubits
 
 class Circuit(val gates: List[CircuitGate], val size: Int) {
 
-  def calculate(qubits: Qubits): Qubits = gates.foldLeft(qubits)((q, g) => g * q)
+  def calculate(qubits: Qubits): Qubits = {
+    gates.foldLeft(qubits)((q, g) => g * q)
+  }
 
   def toListOfString(): List[String] = {
     val table = gates.map(g => g.toString(size))

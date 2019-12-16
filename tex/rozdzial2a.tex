@@ -1,27 +1,27 @@
 \chapter{Translacja układów logicznych do układów kwantowych}
 \thispagestyle{chapterBeginStyle}
 \label{rozdzial2a}
-Jednym z najważniejszych zagadnień, którymi zajmuje się ta praca, jest translacja układów logicznych, rozumianych jako zestaw funkcji boolowskich (rodział \ref{rozdzial0a}), do układów kwantowych. Celem przedstawionego tu problemu translacji jest stworzenie układu kwantowego, który oblicza te same funkcje boolowskie co zadany układ, z wykorzystaniem zestawu bramek przedstawionego wwe wcześniejszych rozdziałach, czyli bramek należących do rodziny bramek Toffoliego, bramki $SWAP$ oraz bramki Fredkina. 
+Jednym z najważniejszych zagadnień, którymi zajmuje się ta praca, jest translacja układów logicznych, rozumianych jako zestaw funkcji boolowskich (rodział \ref{rozdzial0a}), do układów kwantowych. Celem przedstawionego tu problemu translacji jest stworzenie układu kwantowego, który oblicza te same funkcje boolowskie co zadany układ, z wykorzystaniem zestawu bramek przedstawionego we wcześniejszych rozdziałach, czyli bramek należących do rodziny bramek Toffoliego, bramki $SWAP$ oraz bramki Fredkina. 
 \section{Problem translacji}
-W przeciwieństwie do bramek logicznych, operacje składające się na układ kwantowy muszą być unitarne. W szczególności znaczy to, że przyjmują na wejściu tyle samo bitów ile zwracają na wyjściu. Zatem chcąc wyrazić te same operacje, które wykonuje układ logiczny za pomocą układu kwantowego, traktowanego tutaj jako pojedyncza operacja, należałoby odpowiednio zwiększyć liczbę bitów na wejściu/wyjściu i następnie zignorować te "dodatkowe" bity na wejściu/wyjściu. Nie zapewnia to jednak, że tak stworzone mapowanie przedstawione jako macierz będzie poprawną bramkę kwantową (tzn. czy macierz ta będzie unitarna).
-\par Weźmy na przykład bramkę układ logiczny składający się z pojedynczej bramki $AND$. Żeby zachować stałą liczbę bitów na wejściu i wyjściu możemy stworzyć funkcję:
+W przeciwieństwie do bramek logicznych, operacje składające się na układ kwantowy muszą być unitarne. W szczególności znaczy to, że przyjmują na wejściu tyle samo bitów ile zwracają na wyjściu. Zatem chcąc wyrazić te same operacje, które wykonuje układ logiczny za pomocą układu kwantowego, traktowanego tutaj jako pojedyncza operacja, należałoby odpowiednio zwiększyć liczbę bitów na wejściu/wyjściu i następnie zignorować te ,,dodatkowe'' bity na wejściu/wyjściu. Nie zapewnia to jednak, że tak stworzone mapowanie przedstawione jako macierz będzie poprawną bramką kwantową (tzn. czy macierz ta będzie unitarna).
+\par Weźmy na przykład układ logiczny składający się z pojedynczej bramki $AND$. Żeby zachować stałą liczbę bitów na wejściu i wyjściu możemy stworzyć funkcję:
 \[f_{AND}(a,b) = (0, ab)\]
-Tak stworzona fukcja nie jest nawet odwracalna, co jest warunkiem koniecznym unitarności. Co więcej nie jestnieje taka funckcja boolowska $h$
+Tak stworzona fukcja nie jest nawet odwracalna, co jest warunkiem koniecznym unitarności. Co więcej, nie istnieje taka funckcja boolowska $h$
 \[f_{AND}(a,b) = (h(a,b), ab)\]
 żeby $f_{AND}$ było funkcją odwracalną.
-\par Dlatego symulowanie układów logicznych za pomocą układów kwantowych wymaga czasami wprowadzenia bitów pomocniczych, które stanowią dodatkową przestrzeń do obliczeń i których wartość jest początkowa jest znana, tutaj zawsze $\ket{0}$.
+\par Dlatego symulowanie układów logicznych za pomocą układów kwantowych wymaga czasami wprowadzenia bitów pomocniczych, które stanowią dodatkową przestrzeń do obliczeń i których wartość początkowa jest znana, tutaj zawsze $\ket{0}$.
 \section{Podejście naiwne}
 \label{naive}
-Jeżeli jednak stworzony układ kwantowy nie jest pojedynczą bramką, a ciągiem operacji, to każda z tych operacji musi być uniratna. Oznacza to w szczególności, że nie tylko liczbą bitów na wejściu do układu i wyjściu z układu muszą być sobie równe, ale że liczba bitów, na których bramki kwantowe operują jest stała. W szczególności nie można dokonać "rodzielenia kabla" jak to się dzieje w przypadku układów klasycznych.
-\par Przykładowym rozwiązaniem tego problemu mogłoby być wprowadzenie rozszerzenie rejestru kubitów, tak by każdej zmiennej odpowiadała Dlatego o każdej takiej opracji będziemy myśleć jako o bramce $COPY$. Której zachowanie można zapisać za pomocą funkcji następująco:
+Jeżeli stworzony układ kwantowy nie jest pojedynczą bramką, a ciągiem operacji, to każda z tych operacji musi być unitarna. Oznacza to w szczególności, że nie tylko liczby bitów na wejściu do układu i wyjściu z układu muszą być sobie równe, ale że liczba bitów, na których bramki kwantowe operują jest stała. W szczególności nie można dokonać ,,rodzielenia kabla'' jak to się dzieje w przypadku układów klasycznych.
+\par Dlatego o każdej takiej opracji będziemy myśleć jako o bramce $COPY$, której zachowanie można zapisać za pomocą funkcji następująco:
 \[COPY(a) = (a,a)\] 
-\par Jeżeli potrafimy wyrazić bramkę $COPY$ oraz zestaw bramek logicznych tworzących układ funkcjonalnie zupełny za pomocą bramek kwantowych to potrafimy wyrazić każdy układ logiczny za pomocą układu kwantowego.
+\par Jeżeli potrafimy wyrazić bramkę $COPY$ oraz zestaw bramek logicznych tworzących układ funkcjonalnie zupełny za pomocą bramek kwantowych, to potrafimy wyrazić każdy układ logiczny za pomocą układu kwantowego.
 \par Zatem naturalnie pierwszym podejściem do problemu translacji układów logicznych na kwantowe jest wyrażenie tego układu używając jedynie pewnego ograniczonego (zupełnego) zestawu bramek, na przykład $COPY, NOT, AND$, a następnie bezpośrednia zamiana każdej z tych operacji na bramki kwantowe.
 \subsection{Copy}
-Ze względu na stałą liczbę kubitów w układzie kwantowym, każda bramka $COPY$ wymaga powiększenia rejestru wejściowego o jeden bit. Zatem "kwantowa bramka $COPY$" będzie dokonywała mapowania 
+Ze względu na stałą liczbę kubitów w układzie kwantowym, każda bramka $COPY$ wymaga powiększenia rejestru wejściowego o jeden bit. Zatem kwantowa bramka $COPY$ będzie dokonywała mapowania 
 \[C(a,0) = (a,a)\]
 dla $a \in \{0,1\}$.
-\par Operację te można wyrazić za pomocą bramki Feymana
+\par Operację tę można wyrazić za pomocą bramki Feymana
 \[
     \Qcircuit @C=1.5em @R=1.5em {
         \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
@@ -29,7 +29,7 @@ dla $a \in \{0,1\}$.
     }
 \]
 \subsection{Not}
-Logicznej opracji $NOT$ odpowiada bramka kwantowa $NOT$.
+Logicznej operacji Not odpowiada bramka kwantowa $NOT$.
 \subsection{And}
 Weźmy funkcję
 \[T(a,b,c) = (a,b, c \otimes ab)\]
@@ -43,10 +43,10 @@ Operacji tej odpowiada bramka Toffoliego:
         \lstick{\ket{0}} & \targ & \rstick{\ket{0 \otimes ab} = \ket{ab}} \qw
     }
 \]
-Zatem po wprowadzeniu bitu pomocniczego, można obliczyć $AND$ za pomocą bramki Toffoliego.
+Zatem po wprowadzeniu bitu pomocniczego można obliczyć And za pomocą bramki Toffoliego.
 \section{Wyrażanie funkcji boolowskich za pomocą układów kwantowych}
 \subsection{Wejście}
-W tej pracy, zgodnie z modelem przedstawionym w rozdziale \ref{rozdzial0a}, myślimy jako o wektorze funkcji boolowskich. Zatem wejściem do translatora jest funkcja boolowska, ponieważ będzimy zajmować się "jedną na raz". Dodatkowo zakładamy, że każda zadeklarowana zmienna jest również częścią wyjścia, zatem nie możemy "zatracić" wartości tych zmiennych.
+W niniejszej pracy, zgodnie z modelem przedstawionym w rozdziale \ref{rozdzial0a}, myślimy jako o wektorze funkcji boolowskich. Zatem wejściem do translatora jest funkcja boolowska, ponieważ będzimy zajmować się ,,jedną na raz''. Dodatkowo zakładamy, że każda zadeklarowana zmienna jest również częścią wyjścia, zatem nie możemy ,,utracić'' wartości tych zmiennych.
 \subsection{Przykład}
 Weźmy przykładową funkcję
 \[f(a,b,c) = b + a\overline{c} = b \lor (a \land (\neg c))\]
@@ -60,7 +60,7 @@ Korzystając z metod translacji opisanych w rozdziale \ref{naive}, można przest
         \lstick{\ket{0}} & \qw & \qw & \qw & \qw & \targ & \targ & \rstick{\ket{b + a\overline{c}}} \qw
     }
 \]
-Na wejściu zostały dodane dwa bity. Używając strategii tłumaczenia każdej operacji $AND, OR, NOT$ na zestaw bramek kwantowych liczba potrzebnych kubitów pomocniczych u rośnie z sumaryczną liczbą bramek $OR$ i $AND$. Jeden bit na wejściu jest konieczny to przechowania wyniku funkcji, ale wartości przechowywane na reszcie z kubitów pomocniczych są niestotne.
+Na wejściu zostały dodane dwa bity. Używając strategii tłumaczenia każdej operacji $AND, OR, NOT$ na zestaw bramek kwantowych liczba potrzebnych kubitów pomocniczych rośnie z sumaryczną liczbą bramek $OR$ i $AND$. Jeden bit na wejściu jest konieczny to przechowania wyniku funkcji, ale wartości przechowywane na reszcie z kubitów pomocniczych są niestotne.
 \subsection{Teoretyczne minimum dla bitów pomocniczych}
 \begin{lemma}
     \label{l:min}
@@ -75,7 +75,7 @@ Na wejściu zostały dodane dwa bity. Używając strategii tłumaczenia każdej 
     \[f_Q(x_0, x_1, \ldots x_n, 0) = (x_0, x_1, \ldots x_n, 0 \otimes f(\vec{x}))\]
     Funkcją przeciwną do $f_Q$ jest ona sama.
     \[f_Q(f_Q(x_0, x_1, \ldots x_n, c)) = (x_0, x_1, \ldots x_n, c \otimes f(\vec{x}) \otimes f(\vec{x})) = (x_0, x_1, \ldots x_n, c)\]
-    Ponieważ funkcja $f_Q$ jest bijakcją można wyrazić ją jako permutację na wektorach $\{0,1\}^{n+1}$. Dla macierzy $M$ wyrażającej tę permutację otrzymujemy $\forall x_0, x_1, \ldots x_n \in \{0,1\}^{n+1}$
+    Ponieważ funkcja $f_Q$ jest bijekcją, można wyrazić ją jako permutację na wektorach $\{0,1\}^{n+1}$. Dla macierzy $M$ wyrażającej tę permutację otrzymujemy $\forall x_0, x_1, \ldots x_n \in \{0,1\}^{n+1}$
     \[MM\ket{x_0, x_1, \ldots x_n} = \ket{x_0, x_1, \ldots x_n}\]
     Stąd
     \[MM = I\]
@@ -87,7 +87,7 @@ W rozdziale \ref{rozdzial0a} omówiona została sumacyjna postać kanoniczna fuk
     Każdą funkcję boolowską można zapisać w postaci ESOP.
 \end{theorem}
 \begin{proof}
-    Weżmy funkcję boolowską $f: \{0, 1\}^n \rightarrow \{0, 1\}$ zapisaną w postaci sumy mintermów.
+    Weźmy funkcję boolowską $f: \{0, 1\}^n \rightarrow \{0, 1\}$ zapisaną w postaci sumy mintermów.
     \[f(a_0, a_1, \ldots a_n) = m_{k_0} + m_{k_1} + \ldots + m_{k_l}\]
     gdzie $m_i$ oznacza minterm, a $k_0, k_1, k_l \in \{0, 1, \ldots n\}$ oznaczają indeksy mintermów należących do funkcji f.\\
     Zauważmy następującą tożsamość
@@ -99,7 +99,7 @@ W rozdziale \ref{rozdzial0a} omówiona została sumacyjna postać kanoniczna fuk
 \end{proof}
 \section{Tworzenie układu kwantowego z postaci ESOP}
 \begin{theorem}
-    Każdą funkcję boolowską $f: \{0, 1\}^n \rightarrow \{0,1\}$ można obliczyć za pomocą układu, o rejestrze $n+1$-kubitowym,składającego się z maksymalnie $2^n$ uogólnionych bramek Toffoliego oraz $2^{n+1}*n$ bramek $NOT$.
+    Każdą funkcję boolowską $f: \{0, 1\}^n \rightarrow \{0,1\}$ można obliczyć za pomocą układu o rejestrze ($n+1$)-kubitowym, składającego się z maksymalnie $2^n$ uogólnionych bramek Toffoliego oraz $2^{n+1}*n$ bramek $NOT$.
 \end{theorem}
 \begin{proof}
     Weźmy funkcję $f$ w postaci alternatywy wykluczającej mintermów.
@@ -150,11 +150,11 @@ W rozdziale \ref{rozdzial0a} omówiona została sumacyjna postać kanoniczna fuk
                 & \lstick{\ket{0}} & \gate{m_{k_0}} & \gate{m_{k_1}} & \qw & \ldots & & \gate{m_{k_l}} & \rstick{\ket{((\ldots((0 \otimes m_{k_0}) \otimes m_{k_1}) \ldots )\otimes m_{k_l})}} \qw
             }
         \]
-    Ostatni bit powyższego układu "zbiera" wartości mintermów. Jeśli na wejsciu był on zerem to na wyjściu będzie przechowywał wartość funkcji $f$.
+    Ostatni bit powyższego układu ,,zbiera'' wartości mintermów. Jeśli na wejsciu był on zerem to na wyjściu będzie przechowywał wartość funkcji $f$.
 \end{proof}
 \subsection{Przykład}
 Weźmy przykładową funkcję
-\[f(a,b,c,d) = ab \otimes \overline{a}bc\overline{d} \otimes \overline{a}\overline{c}\]
+\[f(a,b,c,d) = ab \otimes \overline{a}\overline{b}cd \otimes \overline{a}\overline{c}\]
 w postaci alternatywy wykluczającej termów.
 \par Wtedy układ kwantowy, zbudowany z bramek $NOT$ oraz bramek Toffoliego, wyrażający tę funkcję, wygląda następująco:
 \[
@@ -167,7 +167,7 @@ w postaci alternatywy wykluczającej termów.
     }
 \]
 \subsection{Algorytm}
-W celu optymalizacji bramek $NOT$ wykorzystanych w układzie obliczającym funkcję $f$ algorytm przetrzymuje informację o aktualnym stanie zmiennych. To znaczy informację czy kubit odpowiadający danej zmiennej przechowuje jej wartość czy negację tej wartości. Dzięki temu wartości argumentów nie są przywracane po każdej bramce Toffoliego, ale jedynie raz na sam koniec.\\
+W celu optymalizacji bramek $NOT$ wykorzystanych w układzie obliczającym funkcję $f$ algorytm przetrzymuje informację o aktualnym stanie zmiennych, to znaczy informację, czy kubit odpowiadający danej zmiennej przechowuje jej wartość czy negację tej wartości. Dzięki temu wartości argumentów nie są przywracane po każdej bramce Toffoliego, ale jedynie raz na sam koniec.\vspace{4mm}\\
 \begin{pseudokod}[H]
     \SetArgSty{normalfont}
     \KwIn{Zbiór termów funkcji w postaci ESOP $E$, index wyjścia $o$}
@@ -211,7 +211,7 @@ Do wyrażenia tej funkcji potrzeba $\frac{1}{2}n$ mintermów, które zostaną za
         & \lstick{\ket{0}} & \targ & \rstick{\ket{f(\vec{x})}} \qw &
     }
 \]
-Zamiast wyliczać całą tabelę wartościowań dla funkcji boolowskiej można zbudować drzewo decyzyjne. 
+Zamiast wyliczać całą tabelę wartościowań dla funkcji boolowskiej, można zbudować drzewo decyzyjne. 
 \begin{definition}
     Rozwinięcie Shannona dla funkcji boolowskiej $f$ względem zmiennej $x_i$ denifiuje się następująco
     \[f(x_0, x_1, \ldots x_n) = x_i*f_{x_i} \otimes \overline{x_i}*f_{\overline{x_i}}\]

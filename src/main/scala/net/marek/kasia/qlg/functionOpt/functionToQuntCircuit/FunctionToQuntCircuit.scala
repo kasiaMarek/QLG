@@ -30,7 +30,8 @@ object FunctionToQuntCircuit {
         }
       }
     })
-    (set, list ::: (notGates :+ Tfl(term.variables.map(_._1), outVariable)))
+    (set ++ negativePolarization.filter( e => !term.variables.map(_._1).contains(e)),
+      list ::: (notGates :+ Tfl(term.variables.map(_._1), outVariable)))
   }
 
 }
