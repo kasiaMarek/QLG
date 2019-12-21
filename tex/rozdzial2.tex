@@ -3,7 +3,7 @@
 \label{rozdzial2}
 
 \section{Wymagania}
-Celem tej pracy jest stworzenie programu, który przyjmuje opis obliczeń (używając predefiniowanego języka) dla układu kwantowego. Natępnie tworzy układ kwantowy odpowiadający tym obliczeniom i symuluje jego działanie.
+Celem tej pracy jest stworzenie programu, który przyjmuje opis obliczeń (napisany w prezdefiniowanym języku) dla układu kwantowego. Natępnie tworzy układ kwantowy odpowiadający tym obliczeniom i symuluje jego działanie.
 \subsection{Założenia dotyczące opisu wejściowego}
 Opis wejściowy (język wejściowy) powinien pozwalać na niżej opisane działania.
 \begin{enumerate}
@@ -18,7 +18,7 @@ Program powinien zwrócić
     \item Wynik symulacji.
 \end{enumerate}
 \subsection{Wymagania dodatkowe}
-Program powinien starać się optymalizować liczbę używanych kubitów pomocniczych, wymaganych przy przełożeniu funkcji nieodwracalnych na bramki kwantowe.
+Sposób translacji układu logicznego do kwantowego powinien być taki, by minimalizował liczbę używanych kubitów pomocniczych.
 \section{Architektura systemu}
 Na rysunku \ref{fig:potok} widać diagram potoku systemu. Program na wejściu przyjmuje opis obliczeń wyspecyfikowany przy użyciu z góry zdefiniowanego języka wejściowego. Opis ten jest parsowany na obiekty rozumiane przez język programowania, przy okazji jest sprawdzana poprawność leksykalna oraz semantyczna zdefiniowanych w opisie wejściowym instrukcji. Wszystkie instrukcje są tłumaczone na akcje związane z układem kwantowym, czyli powiększanie wielkość rejestru kubitów (deklaracja) lub operowanie na rejestrze za pomocą bramek kwantowych. Następnie symulowane jest działanie tak powstałego układu kwantowego. Program zwraca schemat utworzonego układu kwantowego oraz wynik symulacji.
 \begin{figure}[H]
@@ -100,8 +100,9 @@ Następującemu układowi kwantowemu
 odpowiada specyfikacja $(\q, G)$, gdzie
 \[\q = \ket{0000}\]
 \begin{center}
-    $G$ = [ \texttt{not}(0), \texttt{not}(1), \texttt{tfl}([0,3])(2), \texttt{frd}(2)(0,1), \texttt{hdm}(1), \texttt{not}(2) ]
+    $G$ = [ \texttt{not}(0), \texttt{not}(1), \texttt{tfl}([0,3])(2), \texttt{frd}(2)(0,1), \texttt{hdm}(1), \texttt{not}(2)
 \end{center}
+a '[]' oznacza uporządkowaną kolekcję elementów.
 Porządek wykonywania bramek jest nadany od lewej do prawej. Dla bramek znajdujących się w tej samej kolumnie kolejność wykonywania jest nieistotna.
 \section{Symulator}
 Ciąg sperametryzowanych bramek przekształcany jest na ciąg macierzy odpowidających tym bramkom, a następnie przeprowadzana jest operacja mnożenia, która kondensuje listę przekształceń do pojedynczej macierzy $M$. W wyniku opracji monożenia macierzy $M$ przez wektor stanu rejestru otrzymywany jest stan końcowy rejestru. Następnie stan ten jest "mierzony", to znaczy zwracany jest losowo, z prawdopodobieństwem wynikającym ze stanu rejestru, jeden z możliwych do zmierzenia stanów. 
@@ -181,7 +182,7 @@ gdzie numaracja zaczyna się od zera.\vspace{4mm}\\
         }
         \If{$isId$}{
             \tcc{przypadek gdy, wszystkie kubity sterujące są jedynkami}
-                wstaw 1 do macierzy M na miejscu ($j$, $j$ bitwise\_not na ($n-i$)-tym bicie) \tcp*{(kolumna, wiersz)}
+                wstaw 1 do macierzy M na miejscu ($j$, $j$ zanegowane na ($n-i$)-tym bicie) \tcp*{(kolumna, wiersz)}
         }
         \Else {
                 wstaw 1 do macierzy M na miejscu ($j$, $j$) \;

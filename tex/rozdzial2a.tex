@@ -25,14 +25,14 @@ dla $a \in \{0,1\}$.
 \[
     \Qcircuit @C=1.5em @R=1.5em {
         \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
-        \lstick{\ket{0}} & \targ & \rstick{\ket{0 \otimes a} = \ket{a}} \qw
+        \lstick{\ket{0}} & \targ & \rstick{\ket{0 \oplus a} = \ket{a}} \qw
     }
 \]
 \subsection{Not}
 Logicznej operacji Not odpowiada bramka kwantowa $NOT$.
 \subsection{And}
 Weźmy funkcję
-\[T(a,b,c) = (a,b, c \otimes ab)\]
+\[T(a,b,c) = (a,b, c \oplus ab)\]
 Wtedy jeżeli $c = 0$ to
 \[T(a,b,0) = (a,b, ab)\]
 Operacji tej odpowiada bramka Toffoliego:
@@ -40,13 +40,13 @@ Operacji tej odpowiada bramka Toffoliego:
     \Qcircuit @C=1.5em @R=1.5em {
         \lstick{\ket{a}} & \ctrl{1} & \rstick{\ket{a}} \qw \\
         \lstick{\ket{b}} & \ctrl{1} & \rstick{\ket{b}} \qw \\
-        \lstick{\ket{0}} & \targ & \rstick{\ket{0 \otimes ab} = \ket{ab}} \qw
+        \lstick{\ket{0}} & \targ & \rstick{\ket{0 \oplus ab} = \ket{ab}} \qw
     }
 \]
 Zatem po wprowadzeniu bitu pomocniczego można obliczyć And za pomocą bramki Toffoliego.
 \section{Wyrażanie funkcji boolowskich za pomocą układów kwantowych}
 \subsection{Wejście}
-W niniejszej pracy, zgodnie z modelem przedstawionym w rozdziale \ref{rozdzial0a}, myślimy jako o wektorze funkcji boolowskich. Zatem wejściem do translatora jest funkcja boolowska, ponieważ będzimy zajmować się ,,jedną na raz''. Dodatkowo zakładamy, że każda zadeklarowana zmienna jest również częścią wyjścia, zatem nie możemy ,,utracić'' wartości tych zmiennych.
+W niniejszej pracy, zgodnie z modelem przedstawionym w rozdziale \ref{rozdzial0a}, myślimy o układzie logicznym jako o wektorze funkcji boolowskich. Zatem wejściem do translatora jest funkcja boolowska, ponieważ translator będzie przetwarzał kolejno pojedyńcze funkcje. Dodatkowo zakładamy, że każda zadeklarowana zmienna jest również częścią wyjścia, zatem nie możemy ,,utracić'' wartości tych zmiennych.
 \subsection{Przykład}
 Weźmy przykładową funkcję
 \[f(a,b,c) = b + a\overline{c} = b \lor (a \land (\neg c))\]
@@ -70,11 +70,11 @@ Na wejściu zostały dodane dwa bity. Używając strategii tłumaczenia każdej 
 \end{lemma}
 \begin{proof}
     Zdefiniujmy $f_Q$ następująco
-    \[f_Q(x_0, x_1, \ldots x_n, c) = (x_0, x_1, \ldots x_n, c \otimes f(\vec{x}))\]
+    \[f_Q(x_0, x_1, \ldots x_n, c) = (x_0, x_1, \ldots x_n, c \oplus f(\vec{x}))\]
     Wtedy dla c = 0
-    \[f_Q(x_0, x_1, \ldots x_n, 0) = (x_0, x_1, \ldots x_n, 0 \otimes f(\vec{x}))\]
+    \[f_Q(x_0, x_1, \ldots x_n, 0) = (x_0, x_1, \ldots x_n, 0 \oplus f(\vec{x}))\]
     Funkcją przeciwną do $f_Q$ jest ona sama.
-    \[f_Q(f_Q(x_0, x_1, \ldots x_n, c)) = (x_0, x_1, \ldots x_n, c \otimes f(\vec{x}) \otimes f(\vec{x})) = (x_0, x_1, \ldots x_n, c)\]
+    \[f_Q(f_Q(x_0, x_1, \ldots x_n, c)) = (x_0, x_1, \ldots x_n, c \oplus f(\vec{x}) \oplus f(\vec{x})) = (x_0, x_1, \ldots x_n, c)\]
     Ponieważ funkcja $f_Q$ jest bijekcją, można wyrazić ją jako permutację na wektorach $\{0,1\}^{n+1}$. Dla macierzy $M$ wyrażającej tę permutację otrzymujemy $\forall x_0, x_1, \ldots x_n \in \{0,1\}^{n+1}$
     \[MM\ket{x_0, x_1, \ldots x_n} = \ket{x_0, x_1, \ldots x_n}\]
     Stąd
@@ -91,11 +91,11 @@ W rozdziale \ref{rozdzial0a} omówiona została sumacyjna postać kanoniczna fuk
     \[f(a_0, a_1, \ldots a_n) = m_{k_0} + m_{k_1} + \ldots + m_{k_l}\]
     gdzie $m_i$ oznacza minterm, a $k_0, k_1, k_l \in \{0, 1, \ldots n\}$ oznaczają indeksy mintermów należących do funkcji f.\\
     Zauważmy następującą tożsamość
-    \[a + b = a \otimes b \otimes ab\]
+    \[a + b = a \oplus b \oplus ab\]
     Wtedy, ponieważ $\forall i,j$
-    \[m_i \otimes m_j = 0\]
+    \[m_i \oplus m_j = 0\]
     funkcję $f$ można zapisać
-    \[f(a_0, a_1, \ldots a_n) = m_{k_0} \otimes m_{k_1} \otimes \ldots \otimes m_{k_l}\]
+    \[f(a_0, a_1, \ldots a_n) = m_{k_0} \oplus m_{k_1} \oplus \ldots \oplus m_{k_l}\]
 \end{proof}
 \section{Tworzenie układu kwantowego z postaci ESOP}
 \begin{theorem}
@@ -103,7 +103,7 @@ W rozdziale \ref{rozdzial0a} omówiona została sumacyjna postać kanoniczna fuk
 \end{theorem}
 \begin{proof}
     Weźmy funkcję $f$ w postaci alternatywy wykluczającej mintermów.
-    \[f(a_0, a_1, \ldots a_n) = m_{k_0} \otimes m_{k_1} \otimes \ldots \otimes m_{k_l}\]
+    \[f(a_0, a_1, \ldots a_n) = m_{k_0} \oplus m_{k_1} \oplus \ldots \oplus m_{k_l}\]
     Wtedy każdy minterm można obliczyć za pomocą maksymalnie $n*2$ bramek $NOT$ oraz uogólnionej bramki Toffoliego rozmiaru $n+1$. Pierwsze maksymalnie $n$ bramek $NOT$ jest używanych do otrzymania wartości literałów tworzących mineterm. Następnie bramka Toffoliego jest wykorzytana do obliczenia wartościowania mintermu i zapisania go na bicie pomocniczym. Pozostałe bramki $NOT$ są wykorzystane do przywrócenia stanów wejściowych na bitach argumentów.
     \par Dla przykładowego mintermu $m = x_0x_1\overline{x_2}\overline{x_3}x_4$ konstrukacja ta wygląda następująco:
     \columnratio{0.45, 0.1, 0.45}
@@ -147,14 +147,14 @@ W rozdziale \ref{rozdzial0a} omówiona została sumacyjna postać kanoniczna fuk
                 & \lstick{\ket{x_1}} & \ctrl{1} & \ctrl{1} & \qw & \ldots & & \ctrl{1} & \rstick{\ket{x_1}} \qw \\
                 \vdots & & \vdots & \vdots & & \ddots & & \vdots & & \vdots & \\
                 & \lstick{\ket{x_n}} & \ctrl{1} & \ctrl{1} & \qw & \ldots & & \ctrl{1} & \rstick{\ket{x_n}} \qw \\
-                & \lstick{\ket{0}} & \gate{m_{k_0}} & \gate{m_{k_1}} & \qw & \ldots & & \gate{m_{k_l}} & \rstick{\ket{((\ldots((0 \otimes m_{k_0}) \otimes m_{k_1}) \ldots )\otimes m_{k_l})}} \qw
+                & \lstick{\ket{0}} & \gate{m_{k_0}} & \gate{m_{k_1}} & \qw & \ldots & & \gate{m_{k_l}} & \rstick{\ket{((\ldots((0 \oplus m_{k_0}) \oplus m_{k_1}) \ldots )\oplus m_{k_l})}} \qw
             }
         \]
     Ostatni bit powyższego układu ,,zbiera'' wartości mintermów. Jeśli na wejsciu był on zerem to na wyjściu będzie przechowywał wartość funkcji $f$.
 \end{proof}
 \subsection{Przykład}
 Weźmy przykładową funkcję
-\[f(a,b,c,d) = ab \otimes \overline{a}\overline{b}cd \otimes \overline{a}\overline{c}\]
+\[f(a,b,c,d) = ab \oplus \overline{a}\overline{b}cd \oplus \overline{a}\overline{c}\]
 w postaci alternatywy wykluczającej termów.
 \par Wtedy układ kwantowy, zbudowany z bramek $NOT$ oraz bramek Toffoliego, wyrażający tę funkcję, wygląda następująco:
 \[
@@ -214,10 +214,10 @@ Do wyrażenia tej funkcji potrzeba $\frac{1}{2}n$ mintermów, które zostaną za
 Zamiast wyliczać całą tabelę wartościowań dla funkcji boolowskiej, można zbudować drzewo decyzyjne. 
 \begin{definition}
     Rozwinięcie Shannona dla funkcji boolowskiej $f$ względem zmiennej $x_i$ denifiuje się następująco
-    \[f(x_0, x_1, \ldots x_n) = x_i*f_{x_i} \otimes \overline{x_i}*f_{\overline{x_i}}\]
+    \[f(x_0, x_1, \ldots x_n) = x_i*f_{x_i} \oplus \overline{x_i}*f_{\overline{x_i}}\]
     gdzie 
-    \[f_{x_i} = f(x_i = 1)\]
-    \[f_{\overline{x_i}} = f(x_i = 0)\]
+    \[f_{x_i} = f(x_0, x_1, \ldots, x_i = 1, \ldots, x_n)\]
+    \[f_{\overline{x_i}} = f(x_0, x_1, \ldots, x_i = 0, \ldots, x_n)\]
     To znaczy, $f_{x_i}$ jest funkcją powstałą przez podstawienie za $x_i$ $1$.
 \end{definition}
 \subsection{Algorytm}
@@ -258,4 +258,4 @@ Dla przykładowej funkcji $f(a,b,c) = a \land (b \lor \neg c)$ algorytm stworzy 
     ]   
 \end{center}
 Stąd 
-\[f(a, b, c) = ab \otimes a\overline{b}\overline{c}\]
+\[f(a, b, c) = ab \oplus a\overline{b}\overline{c}\]
