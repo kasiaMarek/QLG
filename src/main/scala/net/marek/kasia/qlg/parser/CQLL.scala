@@ -29,18 +29,18 @@ class CQLL extends RegexParsers {
 
   def qGate: Parser[QGate] = (
     "hdm("~>variable<~")" ^^ Hdm
-  | "frd(:"~variable~","~variable~","~variable~")" ^^
-    { case "frd(:"~c~","~v1~","~v2~")" => Frd(List(c), v1, v2) }
-  | "frd("~variable~",:"~variable~","~variable~")" ^^
-    { case "frd("~v1~",:"~c~","~v2~")" => Frd(List(c), v1, v2) }
-  | "frd(:"~variable~","~variable~",:"~variable~")" ^^
-    { case "frd("~v1~","~v2~",:"~c~")" => Frd(List(c), v1, v2) }
+  | "frd(:"~>variable~","~variable~","~variable<~")" ^^
+    { case c~","~v1~","~v2 => Frd(List(c), v1, v2) }
+  | "frd("~>variable~",:"~variable~","~variable<~")" ^^
+    { case v1~",:"~c~","~v2 => Frd(List(c), v1, v2) }
+  | "frd(:"~>variable~","~variable~",:"~variable<~")" ^^
+    { case v1~","~v2~",:"~c => Frd(List(c), v1, v2) }
 
-  | "swp("~variable~","~variable~")" ^^
-      {case "swp("~v1~","~v2~")" => Frd(List(), v1, v2)}
+  | "swp("~>variable~","~variable<~")" ^^
+      {case v1~","~v2 => Frd(List(), v1, v2)}
 
-  | "tfl("~optLeftControls~variable~optRightControls~")" ^^
-    {case "tfl("~lc1~v~lc2~")" => Tfl(lc1 ++ lc2, v)}
+  | "tfl("~>optLeftControls~variable~optRightControls<~")" ^^
+    {case lc1~v~lc2 => Tfl(lc1 ++ lc2, v)}
 
   | "not("~>variable<~")" ^^ (x => NotQ(x))
   )

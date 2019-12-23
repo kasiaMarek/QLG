@@ -1,3 +1,61 @@
 \chapter{Przykłady użycia}
 \thispagestyle{chapterBeginStyle}
 \label{rozdzial4}
+\section{Funkcja boolowska}
+\subsection{Wejście}
+\begin{verbatim}
+a = 1
+b = 0
+c = 0
+f = and(and(or(a, b), a), not(or(b, c)))
+\end{verbatim}
+\subsection{Wyjście}
+\begin{verbatim}
+a  <1>  --- --- -●- --- --- <1>  1.0
+b  <0>  -○- --- -●- --- -○- <0>  0.0
+c  <0>  --- -○- -●- -○- --- <0>  0.0
+f  <0>  --- --- -○- --- --- <1>  1.0
+\end{verbatim}
+\section{Układ logiczny z wartościami 1/2}
+\subsection{Wejście}
+\begin{verbatim}
+a = 0
+b = 0
+c = 0
+d = 1
+hdm(a)
+hdm(b)
+hdm(c)
+f_one = and(a, b, c)
+f_two = and(a, d, or(a, c))
+\end{verbatim}
+\subsection{Wyjście}
+\begin{verbatim}
+a      <0>  -H- --- --- -●- -●- <0>  0.5
+b      <0>  --- -H- --- -●- --- <0>  0.5
+c      <0>  --- --- -H- -●- --- <1>  0.5
+d      <1>  --- --- --- --- -●- <1>  1.0
+f_one  <0>  --- --- --- -○- --- <0>  0.125
+f_two  <0>  --- --- --- --- -○- <0>  0.5
+\end{verbatim}
+\section{Bramki kwantowe}
+\subsection{Wejście}
+\begin{verbatim}
+a = 1
+b = 0
+c = 1
+d = 1
+hdm(b)
+tfl(:b, c)
+hdm(c)
+frd(:c, b, a)
+tfl(:a, d)
+hdm(a)
+\end{verbatim}
+\subsection{Wyjście}
+\begin{verbatim}
+a  <1>  --- --- --- -x- -●- -H- <0>  0.5
+b  <0>  -H- -●- --- -x- --- --- <1>  0.75
+c  <1>  --- -○- -H- -●- --- --- <1>  0.5
+d  <1>  --- --- --- --- -○- --- <1>  0.25
+\end{verbatim}

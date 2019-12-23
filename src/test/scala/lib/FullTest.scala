@@ -20,10 +20,10 @@ class FullTest extends FunSuite with TableDrivenPropertyChecks {
 
     val testCases = Table(
       ("testCase", "fileName", "resultName", "resultValue"),
-//      ("copyTest", "copyTest", "b", 1),
-//      ("simpleOrTest", "simpleOrTest", "c", 1),
-//      ("function1", "function1", "res", 1),
-//      ("function2", "function2", "res", 0),
+      ("copyTest", "copyTest", "b", 1),
+      ("simpleOrTest", "simpleOrTest", "c", 1),
+      ("function1", "function1", "res", 1),
+      ("function2", "function2", "res", 0),
       ("function3", "function3", "f", 1)
     )
 }

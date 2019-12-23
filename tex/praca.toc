@@ -4,73 +4,89 @@
 \contentsline {chapter}{\numberline {2}Logika klasyczna}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Funkcja boolowska}{3}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Podstawowe funkcje boolowskie}{3}{subsection.2.1.1}
-\contentsline {subsubsection}{Id (identyczno\IeC {\'s}\IeC {\'c})}{3}{subsubsection*.1}
-\contentsline {subsubsection}{Not (negacja)}{3}{subsubsection*.2}
-\contentsline {subsubsection}{And (koniunkcja)}{3}{subsubsection*.3}
+\contentsline {subsubsection}{Not (negacja)}{3}{subsubsection*.1}
+\contentsline {subsubsection}{Xor (alternatywa wykluczaj\IeC {\k a}ca)}{3}{subsubsection*.2}
+\contentsline {subsubsection}{And (koniunkcja)}{4}{subsubsection*.3}
 \contentsline {subsubsection}{Or (alternatywa)}{4}{subsubsection*.4}
-\contentsline {subsubsection}{Xor (alternatywa wykluczaj\IeC {\k a}ca)}{4}{subsubsection*.5}
 \contentsline {subsection}{\numberline {2.1.2}Kanoniczna posta\IeC {\'c} sumacyjna (SOP)}{4}{subsection.2.1.2}
 \contentsline {section}{\numberline {2.2}Uk\IeC {\l }ady logiczne}{4}{section.2.2}
-\contentsline {chapter}{\numberline {3}Model uk\IeC {\l }adu kwantowego}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Stan kwantowy kubitu}{7}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Notacja Diraca}{7}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}Stan kwantowy rejestru kubit\IeC {\'o}w}{7}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Stan rejestu kubit\IeC {\'o}w a stan\IeC {\'o}w kubit\IeC {\'o}w}{8}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Spl\IeC {\k a}tanie kwantowe}{8}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Bramka kwantowa}{8}{section.3.3}
-\contentsline {section}{\numberline {3.4}Wybrane bramki kwantowe}{8}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Bramka NOT}{8}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Uog\IeC {\'o}lniona bramka Toffoliego}{9}{subsection.3.4.2}
-\contentsline {subsubsection}{Bramka Feymana}{9}{subsubsection*.6}
-\contentsline {subsubsection}{Bramka Toffoliego}{9}{subsubsection*.7}
-\contentsline {subsubsection}{Uog\IeC {\'o}lniona forma}{10}{subsubsection*.8}
-\contentsline {subsection}{\numberline {3.4.3}Bramka SWAP}{10}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Bramka Fredkina}{10}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Bramka Hadamarda}{10}{subsection.3.4.5}
-\contentsline {section}{\numberline {3.5}Uk\IeC {\l }ad kwantowy}{11}{section.3.5}
-\contentsline {chapter}{\numberline {4}Analiza problemu}{13}{chapter.4}
-\contentsline {section}{\numberline {4.1}Za\IeC {\l }o\IeC {\.z}enia funkcjonalne}{13}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Za\IeC {\l }o\IeC {\.z}enia dotycz\IeC {\k a}ce opisu wej\IeC {\'s}ciowego}{13}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Za\IeC {\l }o\IeC {\.z}enia dotycz\IeC {\k a}ce zwracanego wyniku}{13}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Za\IeC {\l }o\IeC {\.z}enia niefunkcjonalne}{13}{section.4.2}
-\contentsline {chapter}{\numberline {5}Projekt systemu}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Architektura Systemu}{15}{section.5.1}
-\contentsline {section}{\numberline {5.2}J\IeC {\k e}zyk wej\IeC {\'s}ciowy i Parser}{15}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Gramatyka}{15}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Analiza leksykalna}{16}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Instrukcje i analiza semantyczna}{16}{subsection.5.2.3}
-\contentsline {subsubsection}{Definiowanie zmiennej poprzez przypisanie jej warto\IeC {\'s}ci}{16}{subsubsection*.10}
-\contentsline {subsubsection}{Obliczenie funkcji boolowskiej na wcze\IeC {\'s}niej zadeklarowanych zmiennych.}{16}{subsubsection*.11}
-\contentsline {subsubsection}{Operowanie na zdefiniowanych zmiennych przy u\IeC {\.z}yciu wybranych bramek kwantowych.}{16}{subsubsection*.12}
-\contentsline {section}{\numberline {5.3}Translator}{16}{section.5.3}
-\contentsline {section}{\numberline {5.4}Uk\IeC {\l }ad kwantowy z rejestrem}{16}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Przyk\IeC {\l }ad}{17}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}Symulator}{17}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Generacja macierzy bramek z ich definicji}{17}{subsection.5.5.1}
-\contentsline {subsubsection}{Bramki jednokubitowe}{17}{subsubsection*.13}
-\contentsline {subsubsection}{Bramki wielokubitowe}{18}{subsubsection*.14}
-\contentsline {subsubsection}{Uog\IeC {\'o}lniona bramka Toffoliego}{18}{subsubsection*.15}
-\contentsline {section}{\numberline {5.6}Wyj\IeC {\'s}cie}{19}{section.5.6}
-\contentsline {chapter}{\numberline {6}Translacja uk\IeC {\l }ad\IeC {\'o}w logicznych do uk\IeC {\l }ad\IeC {\'o}w kwantowych}{21}{chapter.6}
-\contentsline {section}{\numberline {6.1}Problem translacji}{21}{section.6.1}
-\contentsline {section}{\numberline {6.2}Podej\IeC {\'s}cie naiwne}{21}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Copy}{22}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Not}{22}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}And}{22}{subsection.6.2.3}
-\contentsline {section}{\numberline {6.3}Wyra\IeC {\.z}anie funkcji boolowskich za pomoc\IeC {\k a} uk\IeC {\l }ad\IeC {\'o}w kwantowych}{22}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Wej\IeC {\'s}cie}{22}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}Przyk\IeC {\l }ad}{22}{subsection.6.3.2}
-\contentsline {subsection}{\numberline {6.3.3}Teoretyczne minimum}{23}{subsection.6.3.3}
-\contentsline {section}{\numberline {6.4}Posta\IeC {\'c} ESOP}{24}{section.6.4}
-\contentsline {section}{\numberline {6.5}Tworzenie uk\IeC {\l }adu kwantowego z postaci ESOP}{24}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Algorytm}{25}{subsection.6.5.1}
-\contentsline {section}{\numberline {6.6}Rozwini\IeC {\k e}cie Shannona}{25}{section.6.6}
-\contentsline {subsection}{\numberline {6.6.1}Algorytm}{26}{subsection.6.6.1}
-\contentsline {subsubsection}{Przyk\IeC {\l }ad}{26}{subsubsection*.16}
-\contentsline {chapter}{\numberline {7}Implementacja systemu}{27}{chapter.7}
-\contentsline {section}{\numberline {7.1}Opis technologii}{27}{section.7.1}
-\contentsline {section}{\numberline {7.2}Instrukcja ob\IeC {\l }ugi}{27}{section.7.2}
-\contentsline {chapter}{\numberline {8}Przyk\IeC {\l }ady u\IeC {\.z}ycia}{29}{chapter.8}
-\contentsline {chapter}{\numberline {9}Podsumowanie}{31}{chapter.9}
-\contentsline {chapter}{Bibliografia}{33}{chapter*.17}
-\contentsline {chapter}{\numberline {A}Uog\IeC {\'o}lniona bramka Toffoliego}{35}{appendix.A}
+\contentsline {chapter}{\numberline {3}Model uk\IeC {\l }adu kwantowego}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Stan kwantowy kubitu}{5}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Notacja Diraca}{5}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Stan kwantowy rejestru kubit\IeC {\'o}w}{5}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Stan rejestru kubit\IeC {\'o}w a stan\IeC {\'o}w kubit\IeC {\'o}w}{6}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Spl\IeC {\k a}tanie kwantowe}{6}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Bramka kwantowa}{6}{section.3.3}
+\contentsline {section}{\numberline {3.4}Wybrane bramki kwantowe}{7}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Bramka NOT}{7}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Uog\IeC {\'o}lniona bramka Toffoliego}{7}{subsection.3.4.2}
+\contentsline {subsubsection}{Bramka Feymana}{7}{subsubsection*.5}
+\contentsline {subsubsection}{Bramka Toffoliego}{7}{subsubsection*.6}
+\contentsline {subsubsection}{Uog\IeC {\'o}lniona forma}{8}{subsubsection*.7}
+\contentsline {subsection}{\numberline {3.4.3}Bramka SWAP}{8}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Bramka Fredkina}{8}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Bramka Hadamarda}{9}{subsection.3.4.5}
+\contentsline {section}{\numberline {3.5}Uk\IeC {\l }ad kwantowy}{9}{section.3.5}
+\contentsline {chapter}{\numberline {4}Projekt systemu}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Wymagania}{11}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Za\IeC {\l }o\IeC {\.z}enia dotycz\IeC {\k a}ce opisu wej\IeC {\'s}ciowego}{11}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Za\IeC {\l }o\IeC {\.z}enia dotycz\IeC {\k a}ce zwracanego wyniku}{11}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Wymagania dodatkowe}{11}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Architektura systemu}{11}{section.4.2}
+\contentsline {section}{\numberline {4.3}J\IeC {\k e}zyk wej\IeC {\'s}ciowy i parser}{12}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Gramatyka}{12}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Analiza leksykalna}{12}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Instrukcje i analiza semantyczna}{12}{subsection.4.3.3}
+\contentsline {subsubsection}{Definiowanie zmiennej poprzez przypisanie jej warto\IeC {\'s}ci}{12}{subsubsection*.9}
+\contentsline {subsubsection}{Obliczenie funkcji boolowskiej na wcze\IeC {\'s}niej zadeklarowanych zmiennych.}{12}{subsubsection*.10}
+\contentsline {subsubsection}{Operowanie na zdefiniowanych zmiennych przy u\IeC {\.z}yciu wybranych bramek kwantowych.}{13}{subsubsection*.11}
+\contentsline {section}{\numberline {4.4}Translator}{13}{section.4.4}
+\contentsline {section}{\numberline {4.5}Uk\IeC {\l }ad kwantowy z rejestrem}{13}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Przyk\IeC {\l }ad}{13}{subsection.4.5.1}
+\contentsline {section}{\numberline {4.6}Symulator}{14}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Generacja macierzy bramek z ich definicji}{14}{subsection.4.6.1}
+\contentsline {subsubsection}{Bramki jednokubitowe}{14}{subsubsection*.12}
+\contentsline {subsubsection}{Bramki wielokubitowe}{14}{subsubsection*.13}
+\contentsline {subsubsection}{Uog\IeC {\'o}lniona bramka Toffoliego}{14}{subsubsection*.14}
+\contentsline {section}{\numberline {4.7}Wyj\IeC {\'s}cie}{15}{section.4.7}
+\contentsline {chapter}{\numberline {5}Translacja uk\IeC {\l }ad\IeC {\'o}w logicznych do uk\IeC {\l }ad\IeC {\'o}w kwantowych}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}Problem translacji}{17}{section.5.1}
+\contentsline {section}{\numberline {5.2}Podej\IeC {\'s}cie naiwne}{17}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Copy}{18}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Not}{18}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}And}{18}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Wyra\IeC {\.z}anie funkcji boolowskich za pomoc\IeC {\k a} uk\IeC {\l }ad\IeC {\'o}w kwantowych}{18}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Wej\IeC {\'s}cie}{18}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Przyk\IeC {\l }ad}{18}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Teoretyczne minimum dla bit\IeC {\'o}w pomocniczych}{19}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Posta\IeC {\'c} ESOP}{19}{section.5.4}
+\contentsline {section}{\numberline {5.5}Tworzenie uk\IeC {\l }adu kwantowego z postaci ESOP}{20}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Przyk\IeC {\l }ad}{21}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Algorytm}{21}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}Rozwini\IeC {\k e}cie Shannona}{21}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Algorytm}{22}{subsection.5.6.1}
+\contentsline {subsubsection}{Przyk\IeC {\l }ad}{23}{subsubsection*.15}
+\contentsline {chapter}{\numberline {6}Implementacja systemu}{25}{chapter.6}
+\contentsline {section}{\numberline {6.1}Opis technologii}{25}{section.6.1}
+\contentsline {section}{\numberline {6.2}Instrukcja obs\IeC {\l }ugi}{25}{section.6.2}
+\contentsline {section}{\numberline {6.3}J\IeC {\k e}zyk wyj\IeC {\'s}cia}{25}{section.6.3}
+\contentsline {chapter}{\numberline {7}Przyk\IeC {\l }ady u\IeC {\.z}ycia}{27}{chapter.7}
+\contentsline {section}{\numberline {7.1}Funkcja boolowska}{27}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Wej\IeC {\'s}cie}{27}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Wyj\IeC {\'s}cie}{27}{subsection.7.1.2}
+\contentsline {section}{\numberline {7.2}Uk\IeC {\l }ad logiczny z warto\IeC {\'s}ciami 1/2}{27}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Wej\IeC {\'s}cie}{27}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Wyj\IeC {\'s}cie}{27}{subsection.7.2.2}
+\contentsline {section}{\numberline {7.3}Bramki kwantowe}{28}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Wej\IeC {\'s}cie}{28}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Wyj\IeC {\'s}cie}{28}{subsection.7.3.2}
+\contentsline {chapter}{\numberline {8}Podsumowanie}{29}{chapter.8}
+\contentsline {section}{\numberline {8.1}Minimalizacja liczby kubit\IeC {\'o}w pomocniczych}{29}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Wnioski i uwagi}{29}{subsection.8.1.1}
+\contentsline {subsubsection}{Optymalizacja postaci ESOP}{29}{subsubsection*.16}
+\contentsline {subsubsection}{Rodzina bramek Toffoliego}{29}{subsubsection*.17}
+\contentsline {subsubsection}{Kubity pomocnicze}{29}{subsubsection*.18}
+\contentsline {section}{\numberline {8.2}Dalszy rozw\IeC {\'o}j}{30}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Poszerzenie zbioru bramek kwantowych}{30}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Dodanie nowych instrukcji}{30}{subsection.8.2.2}
+\contentsline {chapter}{Bibliografia}{31}{chapter*.19}
